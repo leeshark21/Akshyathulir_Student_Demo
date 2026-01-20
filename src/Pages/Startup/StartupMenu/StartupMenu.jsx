@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import { Link, useLocation } from 'react-router-dom';
+import MyStartup from '../My Startup/MyStartup';
 
 
 export default function StartupMenu({ openSidebar }) {
@@ -10,19 +11,23 @@ export default function StartupMenu({ openSidebar }) {
 
   const getTabValue = React.useCallback(() => {
     switch (location.pathname) {
-      case '/dashboard/Overview':
-      case '/Overview':
+      case '/StartupMenu/MyStartup':
+      case '//MyStartup':
       case '/':
         return 0;
-      case '/dashboard/DailyStats':
-      case '/DailyStats':
+      case '/StartupMenu/AllStartups':
+      case '/AllStartups':
         return 1;
-      case '/dashboard/Notification':
-      case '/Notification':
+      case '/StartupMenu/ApplyIncubation':
+      case '//ApplyIncubation':
         return 2;
-      case '/dashboard/QuickAction':
-      case '/QuickAction':
+      
+      case '/StartupMenu/AppliacationStatus':
+      case '//AppliacationStatus':
         return 3;
+      case '/StartupMenu/StartupProfile':
+      case '//StartupProfile':
+        return 4;
       default:
         return 0;
     }
@@ -99,7 +104,7 @@ export default function StartupMenu({ openSidebar }) {
         </Tabs>
       </Box>
       
-      {location.pathname === '/' && <Overview openSidebar={openSidebar} />}
+      {location.pathname === '/' && <MyStartup openSidebar={openSidebar} />}
     </Box>
   );
 }

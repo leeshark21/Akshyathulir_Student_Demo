@@ -11,7 +11,7 @@ import StartupMenu from '../StartupMenu/StartupMenu'
 const StartupRoutes = () => {
   return (
     <div>
-        <MyStartupHeader/>
+        
 
         <Routes>
             <Route path='/Startups' element={<StartupMenu/>}/> 
