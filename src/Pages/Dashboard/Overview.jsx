@@ -18,6 +18,7 @@ import PaidIcon from '@mui/icons-material/Paid';
 import Divider from '@mui/material/Divider'
 import Grid from '@mui/material/Grid'
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
+import Dashboard from './Dashboard';
 
 const Overview = ({ openSidebar }) => {
   const xAxis = [
@@ -91,15 +92,18 @@ const Overview = ({ openSidebar }) => {
   ];
 
   return (
-    <Box sx={{ 
+    <Box>
+      <Dashboard openSidebar={openSidebar}/> 
+       <Box sx={{ 
       p: { xs: 2, sm: 3, md: 4 },
       backgroundColor: '#f8f9fa',
-      mt:-58,
+      mt:-60,
       flexGrow: 1,
       ml: openSidebar ? '240px' : '0px',
       transition: 'margin 0.3s ease',
       width: '100%',
     }}>
+      
       <Typography 
         variant="h4" 
         sx={{ 
@@ -400,6 +404,9 @@ const Overview = ({ openSidebar }) => {
         </Grid>
       </Box>
     </Box>
+
+    </Box>
+   
   )
 }
 

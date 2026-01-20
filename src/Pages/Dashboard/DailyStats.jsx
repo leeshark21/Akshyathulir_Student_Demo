@@ -59,6 +59,7 @@ import {
   barElementClasses,
   barLabelClasses,
 } from '@mui/x-charts/BarChart'
+import Dashboard from './Dashboard'
 
 
 const settings = {
@@ -135,7 +136,10 @@ const DailyStats = ({ openSidebar }) => {
     return "default";
   };
   return (
-    <Box sx={{ p: { xs: 2, sm: 3, md: 4 }, mt: -58, backgroundColor: '#f8f9fa', flexGrow: 1, width: '100%', ml: openSidebar ? '240px' : '0px', }}>
+    <Box>
+      <Dashboard openSidebar={openSidebar}/> 
+      <Box sx={{ p: { xs: 2, sm: 3, md: 4 }, mt: -60, backgroundColor: '#f8f9fa', flexGrow: 1, width: '100%', ml: openSidebar ? '240px' : '0px', }}>
+
       <Typography
         variant="h5" sx={{
           fontWeight: 700,
@@ -494,7 +498,7 @@ const DailyStats = ({ openSidebar }) => {
         </Button>
 
         <TextField
-        sx={{height:50,border:'1px solid green'}}
+        sx={{height:50,borderColor:'green'}}
           size="small"
           placeholder="Search"
           InputProps={{
@@ -511,7 +515,7 @@ const DailyStats = ({ openSidebar }) => {
       <TableContainer component={Paper} sx={{ borderRadius: 3 }}>
         <Box display="flex" justifyContent="space-between" p={2}>
           <Box fontWeight="bold">Activity Log</Box>
-          <Button startIcon={<DownloadIcon />} variant="outlined" size="small">
+          <Button startIcon={<DownloadIcon />} variant="outlined" sx={{color:'green',borderColor:'green'}} size="small">
             Export CSV
           </Button>
         </Box>
@@ -553,6 +557,9 @@ const DailyStats = ({ openSidebar }) => {
 
 
     </Box>
+
+    </Box>
+    
   )
 }
 

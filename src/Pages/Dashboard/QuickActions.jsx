@@ -9,6 +9,7 @@ import CampaignIcon from "@mui/icons-material/Campaign";
 import EventIcon from "@mui/icons-material/Event";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import Dashboard from './Dashboard';
 
 const actions = [
   {
@@ -50,7 +51,10 @@ const actions = [
 
 export default function QuickActions() {
   return (
-    <Box sx={{ p: 3, mt: -58, background: "#f6f7fb", minHeight: "100vh" }}>
+    <Box>
+      <Dashboard/> 
+       <Box sx={{mt:-60, p: 3,  background: "#f6f7fb", minHeight: "100vh" }}>
+      
       <Typography variant="h5" fontWeight="bold" mb={2}>
         Quick Actions
       </Typography>
@@ -120,5 +124,8 @@ export default function QuickActions() {
         })}
       </Grid>
     </Box>
+
+    </Box>
+   
   );
 }

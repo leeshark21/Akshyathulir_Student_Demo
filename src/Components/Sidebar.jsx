@@ -20,7 +20,7 @@ export default function Siderbar({ open, toggleDrawer }) {
           <ListItem key={text} disablePadding sx={{ mb: 0.5 }}>
             <ListItemButton
               component={Link}
-              to={'/Dashboard'}
+              to={'/'+ text}
               sx={{
                 borderRadius: 2,
                 mx: 1,

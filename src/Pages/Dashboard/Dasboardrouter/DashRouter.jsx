@@ -13,7 +13,7 @@ const DashRouter = ({ openSidebar, toggleDrawer }) => {
   return (
     <>
       <Siderbar open={openSidebar} toggleDrawer={toggleDrawer} />
-      <Dashboard openSidebar={openSidebar}/>
+       
       
        
       <Routes>

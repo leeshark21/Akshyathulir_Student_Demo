@@ -14,6 +14,7 @@ import PersonIcon from "@mui/icons-material/Person";
 import MonetizationOnIcon from "@mui/icons-material/MonetizationOn";
 import EventIcon from "@mui/icons-material/Event";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
+import Dashboard from "./Dashboard";
 
 const data = [
   {
@@ -48,7 +49,10 @@ const data = [
 
 export default function Notification({ openSidebar }) {
   return (
-    <Box sx={{ p: 4,m:-57, background: "#f5f7fb", minHeight: "100vh", ml: openSidebar ? '240px' : '0px' }}>
+    <Box>
+       <Dashboard openSidebar={openSidebar}/> 
+        <Box sx={{ mt:-60, p: 4, background: "#f5f7fb", minHeight: "100vh", ml: openSidebar ? '240px' : '0px' }}>
+     
       <Typography variant="h5" fontWeight="bold" mb={3}>
         Notifications
       </Typography>
@@ -65,7 +69,7 @@ export default function Notification({ openSidebar }) {
       </Stack>
 
       {/* Card */}
-      <Card sx={{ borderRadius: 3, boxShadow: 3 }}>
+      <Card sx={{ borderRadius: 3, boxShadow: 3,width:1200 }}>
         {/* Header */}
         <Stack
           direction="row"
@@ -135,5 +139,7 @@ export default function Notification({ openSidebar }) {
         ))}
       </Card>
     </Box>
+    </Box>
+    
   );
 }
