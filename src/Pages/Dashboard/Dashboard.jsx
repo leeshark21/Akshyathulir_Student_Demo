@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, Outlet } from 'react-router-dom';
 import Overview from './Overview';
 
 export default function Dashboard({ openSidebar }) {
@@ -10,18 +10,14 @@ export default function Dashboard({ openSidebar }) {
 
   const getTabValue = React.useCallback(() => {
     switch (location.pathname) {
-      case '/dashboard/Overview':
-      case '/Overview':
-      case '/':
+      case '/dashboard':
+      case '/dashboard/overview':
         return 0;
-      case '/dashboard/DailyStats':
-      case '/DailyStats':
+      case '/dashboard/daily-stats':
         return 1;
-      case '/dashboard/Notification':
-      case '/Notification':
+      case '/dashboard/notification':
         return 2;
-      case '/dashboard/QuickAction':
-      case '/QuickAction':
+      case '/dashboard/quick-action':
         return 3;
       default:
         return 0;
@@ -46,7 +42,7 @@ export default function Dashboard({ openSidebar }) {
       transition: 'margin 0.3s ease',
       width: '100%',
       backgroundColor: '#f8f9fa',
-      minHeight: 'calc(100vh - 64px)',
+      
     }}>
       <Box sx={{ 
         backgroundColor: 'white',
@@ -76,7 +72,7 @@ export default function Dashboard({ openSidebar }) {
               key={index}
               label={label}
               component={Link}
-              to={`/${label.replace(' ', '')}`}
+              to={`/dashboard/${label.toLowerCase().replace(' ', '-')}`}
               sx={{
                 textTransform: 'none',
                 fontWeight: 500,
@@ -99,7 +95,7 @@ export default function Dashboard({ openSidebar }) {
         </Tabs>
       </Box>
       
-      {location.pathname === '/' && <Overview openSidebar={openSidebar} />}
+      <Outlet />
     </Box>
   );
 }

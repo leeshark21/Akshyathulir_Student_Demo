@@ -2,8 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import { Link, useLocation } from 'react-router-dom';
-import MyStartup from '../My Startup/MyStartup';
+import { Link, useLocation, Outlet } from 'react-router-dom';
 
 
 export default function StartupMenu({ openSidebar }) {
@@ -11,22 +10,17 @@ export default function StartupMenu({ openSidebar }) {
 
   const getTabValue = React.useCallback(() => {
     switch (location.pathname) {
-      case '/StartupMenu/MyStartup':
-      case '//MyStartup':
-      case '/':
+      case '/startups':
+      case '/startups/menu':
+      case '/startups/my-startup':
         return 0;
-      case '/StartupMenu/AllStartups':
-      case '/AllStartups':
+      case '/startups/all':
         return 1;
-      case '/StartupMenu/ApplyIncubation':
-      case '//ApplyIncubation':
+      case '/startups/apply-incubation':
         return 2;
-      
-      case '/StartupMenu/AppliacationStatus':
-      case '//AppliacationStatus':
+      case '/startups/status':
         return 3;
-      case '/StartupMenu/StartupProfile':
-      case '//StartupProfile':
+      case '/startups/profile':
         return 4;
       default:
         return 0;
@@ -51,7 +45,8 @@ export default function StartupMenu({ openSidebar }) {
       transition: 'margin 0.3s ease',
       width: '100%',
       backgroundColor: '#f8f9fa',
-      minHeight: 'calc(100vh - 64px)',
+      mb: 2
+      
     }}>
       <Box sx={{ 
         backgroundColor: 'white',
@@ -81,7 +76,7 @@ export default function StartupMenu({ openSidebar }) {
               key={index}
               label={label}
               component={Link}
-              to={`/${label.replace(' ', '')}`}
+              to={`/startups/${label.toLowerCase().replace(/\s+/g, '-')}`}
               sx={{
                 textTransform: 'none',
                 fontWeight: 500,
@@ -104,7 +99,7 @@ export default function StartupMenu({ openSidebar }) {
         </Tabs>
       </Box>
       
-      {location.pathname === '/' && <MyStartup openSidebar={openSidebar} />}
+      <Outlet />
     </Box>
   );
 }

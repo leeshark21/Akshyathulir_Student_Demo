@@ -97,7 +97,7 @@ const Overview = ({ openSidebar }) => {
        <Box sx={{ 
       p: { xs: 2, sm: 3, md: 4 },
       backgroundColor: '#f8f9fa',
-      mt:-60,
+      
       flexGrow: 1,
       ml: openSidebar ? '240px' : '0px',
       transition: 'margin 0.3s ease',

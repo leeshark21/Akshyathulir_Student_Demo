@@ -12,15 +12,36 @@ import MailIcon from '@mui/icons-material/Mail';
 import Typography from '@mui/material/Typography'
 import { Link } from 'react-router-dom';
 
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import BusinessIcon from '@mui/icons-material/Business';
+import PeopleIcon from '@mui/icons-material/People';
+import SchoolIcon from '@mui/icons-material/School';
+import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
+import BarChartIcon from '@mui/icons-material/BarChart';
+import SettingsIcon from '@mui/icons-material/Settings';
+
+
 export default function Siderbar({ open, toggleDrawer }) {
+
+  const icons = [
+    <DashboardIcon />,
+    <BusinessIcon />,
+    <PeopleIcon />,
+    <SchoolIcon />,
+    <AttachMoneyIcon />,
+    <BarChartIcon />,
+   
+    <SettingsIcon />
+  ];
+
   const DrawerList = (
     <Box sx={{ width: 260, px: 1 }} role="presentation">
       <List>
-        {['Dashboard', 'Startups', 'Programs', 'Mentorship', 'Funding', 'Resources', 'Community', 'Facilities', 'Reports'].map((text, index) => (
+        {['Dashboard', 'Startups', 'Mentors', 'Programs', 'Funding', 'Reports',  'Settings'].map((text, index) => (
           <ListItem key={text} disablePadding sx={{ mb: 0.5 }}>
             <ListItemButton
               component={Link}
-              to={'/'+ text}
+              to={'/' + text}
               sx={{
                 borderRadius: 2,
                 mx: 1,
@@ -37,7 +58,10 @@ export default function Siderbar({ open, toggleDrawer }) {
               }}
             >
               <ListItemIcon sx={{ color: 'inherit', minWidth: 40 }}>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                <ListItemIcon sx={{ color: 'inherit', minWidth: 40 }}>
+                  {icons[index]}
+                </ListItemIcon>
+
               </ListItemIcon>
               <ListItemText
                 primary={text}
@@ -65,7 +89,7 @@ export default function Siderbar({ open, toggleDrawer }) {
               }}
             >
               <ListItemIcon sx={{ color: 'inherit', minWidth: 40 }}>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
+                  {icons[index]}
               </ListItemIcon>
               <ListItemText
                 primary={text}
@@ -93,7 +117,7 @@ export default function Siderbar({ open, toggleDrawer }) {
           backgroundColor: '#2e7d32',
           color: 'white',
           height: '100vh',
-          
+
           borderRight: '1px solid rgba(255, 255, 255, 0.1)',
           boxShadow: '2px 0 8px rgba(0, 0, 0, 0.08)',
           overflowY: 'auto',

@@ -51,7 +51,7 @@ export default function Notification({ openSidebar }) {
   return (
     <Box>
        <Dashboard openSidebar={openSidebar}/> 
-        <Box sx={{ mt:-60, p: 4, background: "#f5f7fb", minHeight: "100vh", ml: openSidebar ? '240px' : '0px' }}>
+        <Box sx={{ p: 4, background: "#f5f7fb", minHeight: "100vh", ml: openSidebar ? '240px' : '0px' }}>
      
       <Typography variant="h5" fontWeight="bold" mb={3}>
         Notifications

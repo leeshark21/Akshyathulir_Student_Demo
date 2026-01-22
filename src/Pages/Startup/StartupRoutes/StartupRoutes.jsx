@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Routes } from 'react-router'
+import { Route, Routes } from 'react-router-dom'
 import AllStartups from '../All Startups/AllStartups'
 import AppliacationStatus from '../ApplicationStatus/AppliacationStatus'
 import StartupProfile from '../StartupProfiles/StartupProfile'

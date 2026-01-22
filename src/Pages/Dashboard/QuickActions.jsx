@@ -53,7 +53,7 @@ export default function QuickActions() {
   return (
     <Box>
       <Dashboard/> 
-       <Box sx={{mt:-60, p: 3,  background: "#f6f7fb", minHeight: "100vh" }}>
+       <Box sx={{p: 3,  background: "#f6f7fb", minHeight: "100vh" }}>
       
       <Typography variant="h5" fontWeight="bold" mb={2}>
         Quick Actions
