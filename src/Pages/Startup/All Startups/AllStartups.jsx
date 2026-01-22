@@ -80,7 +80,7 @@ const AllStartups = () => {
                   <MenuItem value="Newest">Newest</MenuItem>
                   <MenuItem value="Oldest">Oldest</MenuItem>
                 </TextField>
-                <Button sx={{ bgcolor: 'green', fontSize:{ xs: 12, sm: 0 } }} variant="contained" startIcon={<SearchIcon sx={{ ml:{xs:0 ,sm:1.5} }} />}>
+                <Button sx={{ bgcolor: '#1E4A28', fontSize:{ xs: 12, sm: 0 } }} variant="contained" startIcon={<SearchIcon sx={{ ml:{xs:0 ,sm:1.5} }} />}>
                   Search
                 </Button>
               </Stack>
@@ -127,7 +127,7 @@ const AllStartups = () => {
                       </TableCell>
                       <TableCell>{s.city}</TableCell>
                       <TableCell>
-                        <Button sx={{color:'green' ,borderColor:'green'}} variant="outlined" size="small">
+                        <Button sx={{color:'#1E4A28' ,borderColor:'#1E4A28'}} variant="outlined" size="small">
                           View
                         </Button>
                       </TableCell>

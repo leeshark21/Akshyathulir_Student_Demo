@@ -64,7 +64,7 @@ export default function StartupMenu({ openSidebar }) {
             '& .MuiTabs-indicator': {
               height: 3,
               borderRadius: '3px 3px 0 0',
-              backgroundColor: '#2e7d32',
+              backgroundColor: '#1E4A28',
             },
             '& .MuiTabs-flexContainer': {
               gap: { xs: 0, sm: 1 },
@@ -86,11 +86,11 @@ export default function StartupMenu({ openSidebar }) {
                 color: '#999',
                 transition: 'all 0.2s ease',
                 '&:hover': {
-                  color: '#2e7d32',
-                  backgroundColor: 'rgba(46, 125, 50, 0.02)',
+                  color: '#1E4A28',
+                  backgroundColor: 'rgba(30, 74, 40, 0.02)',
                 },
                 '&.Mui-selected': {
-                  color: '#2e7d32',
+                  color: '#1E4A28',
                   fontWeight: 600,
                 },
               }}

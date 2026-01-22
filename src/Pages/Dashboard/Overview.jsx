@@ -77,14 +77,14 @@ const Overview = ({ openSidebar }) => {
   const cardData = [
     {
       title: "Growth This Month",
-      icon: <TrendingUpIcon sx={{fontSize: 40, color: '#2e7d32'}} />,
+      icon: <TrendingUpIcon sx={{fontSize: 40, color: '#1E4A28'}} />,
       value: 18,
       label: "Growth",
       subLabel: "In This Month",
     },
     {
       title: "New Application",
-      icon: <RocketLaunchIcon sx={{fontSize: 40, color: '#2e7d32'}}/>,
+      icon: <RocketLaunchIcon sx={{fontSize: 40, color: '#1E4A28'}}/>,
       value: 32,
       label: "Application",
       subLabel: "In The Last Week",
@@ -147,7 +147,7 @@ const Overview = ({ openSidebar }) => {
                       left: 0,
                       right: 0,
                       height: '3px',
-                      backgroundColor: '#2e7d32',
+                      backgroundColor: '#1E4A28',
                       transform: 'scaleX(0)',
                       transformOrigin: 'left',
                       transition: 'transform 0.3s ease',
@@ -188,7 +188,7 @@ const Overview = ({ openSidebar }) => {
                         </Typography>
                       </Box>
                       <Box sx={{ 
-                        color: '#2e7d32',
+                        color: '#1E4A28',
                         opacity: 0.85,
                         display: 'flex',
                         alignItems: 'center',
@@ -203,11 +203,11 @@ const Overview = ({ openSidebar }) => {
                     <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', pt: 1 }}>
                       <Box sx={{ display: 'flex', gap: 1.5, alignItems: 'center' }}>
                         <Box sx={{ 
-                          backgroundColor: '#2e7d32', 
+                          backgroundColor: '#1E4A28', 
                           px: 1.25, 
                           py: 0.4, 
                           borderRadius: '6px',
-                          boxShadow: '0 2px 6px rgba(46, 125, 50, 0.15)',
+                          boxShadow: '0 2px 6px rgba(30, 74, 40, 0.15)',
                         }}>
                           <Typography 
                             sx={{ 
@@ -274,7 +274,7 @@ const Overview = ({ openSidebar }) => {
               <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
                 <Box sx={{ display: 'flex', gap: 1, alignItems: 'center' }}>
                   <Typography variant="h6" sx={{ fontWeight: 700, color: '#1a1a1a', fontSize: '1.1rem' }}>Funds Raised</Typography>
-                  <PaidIcon sx={{ color: '#2e7d32', fontSize: '1.5rem' }} />
+                  <PaidIcon sx={{ color: '#1E4A28', fontSize: '1.5rem' }} />
                 </Box>
                 <MoreHorizIcon sx={{ color: '#ddd', cursor: 'pointer', transition: 'all 0.2s', '&:hover': { color: '#999' } }} />
               </Box>
@@ -343,7 +343,7 @@ const Overview = ({ openSidebar }) => {
                     borderRadius: '10px',
                     mb: 2.5,
                     p: 2.5,
-                    bgcolor: "#2e7d32",
+                    bgcolor: "#1E4A28",
                     boxShadow: '0 4px 12px rgba(46, 125, 50, 0.2)',
                   }}
                 >

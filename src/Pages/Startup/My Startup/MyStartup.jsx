@@ -46,7 +46,7 @@ const MyStartup = () => {
             <CardContent>
               {/* Top Section */}
               <Stack direction="row" spacing={2} alignItems="center">
-                <Avatar sx={{ bgcolor: "green", width: 48, height: 48 }}>ABC</Avatar>
+                <Avatar sx={{ bgcolor: "#1E4A28", width: 48, height: 48 }}>ABC</Avatar>
                 <Box>
                   <Typography fontWeight={600}>ABC Tech</Typography>
                   <Typography variant="body2" color="text.secondary">
@@ -61,9 +61,9 @@ const MyStartup = () => {
                   <Typography color="text.secondary">Stage</Typography>
                   <Chip label="MVP" size="small" />
                   <Box sx={{ flex: 1 }}>
-                    <LinearProgress color='success' variant="determinate" value={50} />
+                    <LinearProgress sx={{ '& .MuiLinearProgress-bar': { backgroundColor: '#1E4A28' } }} variant="determinate" value={50} />
                   </Box>
-                  <Typography sx={{ color: 'green' }} fontWeight={500}>50%</Typography>
+                  <Typography sx={{ color: '#1E4A28' }} fontWeight={500}>50%</Typography>
                 </Stack>
               </Box >
 
@@ -81,22 +81,22 @@ const MyStartup = () => {
 
 
                 <Grid item size={8}>
-                  <Typography fontWeight={500} color='success' padding={1}>Mentor</Typography>
+                  <Typography fontWeight={500} sx={{ color: '#1E4A28' }} padding={1}>Mentor</Typography>
                   <Stack direction="row" spacing={1} mt={1}>
                     <Avatar src="https://i.pravatar.cc/40?img=2" />
                     <Avatar src="https://i.pravatar.cc/40?img=3" />
                     <Avatar src="https://i.pravatar.cc/40?img=4" />
                   </Stack>
-                  <Typography variant="body2" color="success">
+                  <Typography variant="body2" sx={{ color: '#1E4A28' }}>
                     Mentor area
                   </Typography>
                 </Grid>
 
                 <Grid item size={1} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 1 }}>
-                  <Typography color="success" fontWeight={500}>
+                  <Typography sx={{ color: '#1E4A28' }} fontWeight={500}>
                     Progress
                   </Typography>
-                  <Button variant="outlined" size="small" color="success" sx={{ width: 150, mr: 4 }}>
+                  <Button variant="outlined" size="small" sx={{ color: '#1E4A28', borderColor: '#1E4A28', width: 150, mr: 4 }}>
                     View Details
                   </Button>
                 </Grid>
@@ -146,26 +146,26 @@ const MyStartup = () => {
                     },}}>
                   <CardContent>
                     <Box display="flex" alignItems="center" gap={1}>
-                      <FlagIcon color="success" />
-                      <Typography variant="h6" color='success'>Milestones</Typography>
+                      <FlagIcon sx={{ color: '#1E4A28' }} />
+                      <Typography variant="h6" sx={{ color: '#1E4A28' }}>Milestones</Typography>
                     </Box>
                     <Divider sx={{ my: 1 }} />
                     <Box display="flex" alignItems="center" gap={1} mt={1}>
-                      <CheckCircleIcon color="success" />
+                      <CheckCircleIcon sx={{ color: '#1E4A28' }} />
                       <Box>
                         <Typography>Prototype Completed</Typography>
                         <Typography variant="caption">2 weeks ago</Typography>
                       </Box>
                     </Box>
                     <Box display="flex" alignItems="center" gap={1} mt={1}>
-                      <CheckCircleIcon color="success" />
+                      <CheckCircleIcon sx={{ color: '#1E4A28' }} />
                       <Box>
                         <Typography>MVP Launched</Typography>
                         <Typography variant="caption">3 days ago</Typography>
                       </Box>
                     </Box>
                     <Box mt={4}>
-                      <Button sx={{borderColor:'green', width: '100%',color:'green'}} variant="outlined">View All</Button>
+                      <Button sx={{borderColor:'#1E4A28', width: '100%',color:'#1E4A28'}} variant="outlined">View All</Button>
                     </Box>
                   </CardContent>
                 </Card>
@@ -207,8 +207,8 @@ const MyStartup = () => {
                     },}}>
                   <CardContent>
                     <Box display="flex" alignItems="center" gap={1}>
-                      <MonetizationOnIcon color="success" />
-                      <Typography variant="h6" color='green'>Funding Status</Typography>
+                      <MonetizationOnIcon sx={{ color: '#1E4A28' }} />
+                      <Typography variant="h6" sx={{ color: '#1E4A28' }}>Funding Status</Typography>
                     </Box>
                     <Divider sx={{ my: 1 }} />
                     <Typography variant="h4"  fontWeight="bold">$120,000 Raised</Typography>
@@ -217,7 +217,7 @@ const MyStartup = () => {
                       <LinearProgress  variant="determinate" value={40} />
                     </Box>
                     <Box  mt={7}>
-                      <Button sx={{borderColor:'green', width: '100%',color:'green'}}  variant="outlined">View Details</Button>
+                      <Button sx={{borderColor:'#1E4A28', width: '100%',color:'#1E4A28'}}  variant="outlined">View Details</Button>
                     </Box>
                   </CardContent>
                 </Card>
@@ -259,8 +259,8 @@ const MyStartup = () => {
                     },}}>
                   <CardContent>
                     <Box display="flex" alignItems="center" gap={1}>
-                      <CalendarTodayIcon color="success" />
-                      <Typography  color="success" variant="h6">Upcoming Sessions</Typography>
+                      <CalendarTodayIcon sx={{ color: '#1E4A28' }} />
+                      <Typography  sx={{ color: '#1E4A28' }} variant="h6">Upcoming Sessions</Typography>
                     </Box>
                     <Divider sx={{ my: 1 }} />
                     <Box mb={1}>
@@ -274,7 +274,7 @@ const MyStartup = () => {
                       <Chip label="Pending" color="warning" size="small" sx={{ ml: 1 }} />
                     </Box>
                     <Box  mt={4}>
-                      <Button sx={{borderColor:'green', width: '100%',color:'green'}} variant="outlined">View Calendar</Button>
+                      <Button sx={{borderColor:'#1E4A28', width: '100%',color:'#1E4A28'}} variant="outlined">View Calendar</Button>
                     </Box>
                   </CardContent>
                 </Card>

@@ -37,7 +37,7 @@ export default function Siderbar({ open, toggleDrawer }) {
   const DrawerList = (
     <Box sx={{ width: 260, px: 1 }} role="presentation">
       <List>
-        {['Dashboard', 'Startups', 'Mentors', 'Programs', 'Funding', 'Reports',  'Settings'].map((text, index) => (
+        {['Dashboard', 'Startups', 'Mentorship', 'Programs', 'Funding', 'Reports',  'Settings'].map((text, index) => (
           <ListItem key={text} disablePadding sx={{ mb: 0.5 }}>
             <ListItemButton
               component={Link}
@@ -74,34 +74,7 @@ export default function Siderbar({ open, toggleDrawer }) {
           </ListItem>
         ))}
       </List>
-      <Divider sx={{ borderColor: 'rgba(255, 255, 255, 0.12)', my: 2 }} />
-      <List>
-        {['All mail', 'Trash', 'Spam'].map((text, index) => (
-          <ListItem key={text} disablePadding sx={{ mb: 0.5 }}>
-            <ListItemButton
-              sx={{
-                borderRadius: 2,
-                mx: 1,
-                py: 1.5,
-                '&:hover': {
-                  backgroundColor: 'rgba(255, 255, 255, 0.12)',
-                },
-              }}
-            >
-              <ListItemIcon sx={{ color: 'inherit', minWidth: 40 }}>
-                  {icons[index]}
-              </ListItemIcon>
-              <ListItemText
-                primary={text}
-                primaryTypographyProps={{
-                  fontWeight: 500,
-                  fontSize: '0.95rem',
-                }}
-              />
-            </ListItemButton>
-          </ListItem>
-        ))}
-      </List>
+     
     </Box>
   );
 
@@ -114,7 +87,7 @@ export default function Siderbar({ open, toggleDrawer }) {
       sx={{
         '& .MuiDrawer-paper': {
           width: 260,
-          backgroundColor: '#2e7d32',
+          backgroundColor: '#1E4A28',
           color: 'white',
           height: '100vh',
 

@@ -39,7 +39,7 @@ const StatCard = ({ icon, title, value }) => (
             left: 0,
             right: 0,
             height: '3px',
-            backgroundColor: '#2e7d32',
+            backgroundColor: '#1E4A28',
             transform: 'scaleX(0)',
             transformOrigin: 'left',
             transition: 'transform 0.3s ease',
@@ -88,7 +88,7 @@ const ReportCard = ({ icon, title, line1, line2 }) => (
                 left: 0,
                 right: 0,
                 height: '3px',
-                backgroundColor: '#2e7d32',
+                backgroundColor: '#1E4A28',
                 transform: 'scaleX(0)',
                 transformOrigin: 'left',
                 transition: 'transform 0.3s ease',
@@ -117,7 +117,7 @@ const ReportCard = ({ icon, title, line1, line2 }) => (
             <Button
                 variant="contained"
                 color="success"
-                sx={{ mt: 2, borderRadius: 2,px:7 }}
+                sx={{ mt: 10, borderRadius: 2, width:200 , height:50 }}
             >
                 View Report
             </Button>
@@ -178,7 +178,7 @@ export default function Reports() {
                     textColor="success"
                     indicatorColor="success"
                 >
-                    <Tab  color="green" label="Funding Requests" />
+                    <Tab  sx={{ color: '#1E4A28' }} label="Funding Requests" />
                     <Tab label="Funding Overview" />
                 </Tabs>
 

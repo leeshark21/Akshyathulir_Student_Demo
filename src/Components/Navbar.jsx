@@ -160,7 +160,7 @@ export default function Navbar({ openSidebar, toggleDrawer }) {
 
     return (
         <>
-            <Grid container spacing={0} sx={{ml: openSidebar ? '262px' : '0px', transition: 'margin 0.3s ease', }}>
+            <Grid  container spacing={0} sx={{ml: openSidebar ? '262px' : '0px', transition: 'margin 0.3s ease', position:'fixed',zIndex:1,width:'100%'}}>
                 <Grid size={12}>
                     <Box sx={{
                         flexGrow: 1,
@@ -170,7 +170,7 @@ export default function Navbar({ openSidebar, toggleDrawer }) {
                           position="static" 
                           elevation={0}
                           sx={{ 
-                            backgroundColor: '#2e7d32',
+                            backgroundColor: '#1E4A28',
                             borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
                             boxShadow: '0 2px 8px rgba(0, 0, 0, 0.08)',
                           }}

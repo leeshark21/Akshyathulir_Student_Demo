@@ -79,7 +79,7 @@ export default function Settings() {
                                     left: 0,
                                     right: 0,
                                     height: '3px',
-                                    backgroundColor: '#2e7d32',
+                                    backgroundColor: '#1E4A28',
                                     transform: 'scaleX(0)',
                                     transformOrigin: 'left',
                                     transition: 'transform 0.3s ease',

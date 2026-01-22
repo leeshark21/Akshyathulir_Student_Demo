@@ -175,7 +175,7 @@ const DailyStats = ({ openSidebar }) => {
                 left: 0,
                 right: 0,
                 height: '3px',
-                backgroundColor: '#2e7d32',
+                backgroundColor: '#1E4A28',
                 transform: 'scaleX(0)',
                 transformOrigin: 'left',
                 transition: 'transform 0.3s ease',
@@ -214,7 +214,7 @@ const DailyStats = ({ openSidebar }) => {
                 </Typography>
               </Box>
               <Box sx={{
-                color: '#2e7d32',
+                color: '#1E4A28',
                 opacity: 0.9,
                 '& svg': {
                   fontSize: '2rem',
@@ -226,11 +226,11 @@ const DailyStats = ({ openSidebar }) => {
             <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <Box sx={{ display: 'flex', gap: 1.5, alignItems: 'center' }}>
                 <Box sx={{
-                  backgroundColor: '#2e7d32',
+                  backgroundColor: '#1E4A28',
                   px: 1.5,
                   py: 0.5,
                   borderRadius: 2,
-                  boxShadow: '0 2px 4px rgba(46, 125, 50, 0.2)',
+                  boxShadow: '0 2px 4px rgba(30, 74, 40, 0.2)',
                 }}>
                   <Typography
                     sx={{
@@ -478,27 +478,27 @@ const DailyStats = ({ openSidebar }) => {
           sx={{border:'1px solid green'}}
         >
           <ToggleButton     value="today">Today</ToggleButton>
-          <ToggleButton sx={{color:'green'}} value="week">This Week</ToggleButton>
-          <ToggleButton sx={{color:'green'}} value="month">This Month</ToggleButton>
+          <ToggleButton sx={{color:'#1E4A28'}} value="week">This Week</ToggleButton>
+          <ToggleButton sx={{color:'#1E4A28'}} value="month">This Month</ToggleButton>
         </ToggleButtonGroup>
 
-        <Select size="small" value={type} onChange={(e) => setType(e.target.value)} sx={{height:50,border:'1px solid green',color:'green',outlineColor:'green'}}>
-          <MenuItem sx={{color:'green'}} value="all">All Types</MenuItem>
-          <MenuItem sx={{color:'green'}} value="startup">Startup</MenuItem>
-          <MenuItem sx={{color:'green'}} value="mentor">Mentor</MenuItem>
+        <Select size="small" value={type} onChange={(e) => setType(e.target.value)} sx={{height:50,border:'1px solid #1E4A28',color:'#1E4A28',outlineColor:'#1E4A28'}}>
+          <MenuItem sx={{color:'#1E4A28'}} value="all">All Types</MenuItem>
+          <MenuItem sx={{color:'#1E4A28'}} value="startup">Startup</MenuItem>
+          <MenuItem sx={{color:'#1E4A28'}} value="mentor">Mentor</MenuItem>
         </Select>
 
         <Button
           variant="outlined"
           startIcon={<CalendarMonthIcon />}
           size="small"
-          sx={{height:50,color:'green',border:'1px solid green'}}
+          sx={{height:50,color:'#1E4A28',border:'1px solid #1E4A28'}}
         >
           April 24, 2024
         </Button>
 
         <TextField
-        sx={{height:50,borderColor:'green'}}
+        sx={{height:50,borderColor:'#1E4A28'}}
           size="small"
           placeholder="Search"
           InputProps={{
@@ -515,7 +515,7 @@ const DailyStats = ({ openSidebar }) => {
       <TableContainer component={Paper} sx={{ borderRadius: 3 }}>
         <Box display="flex" justifyContent="space-between" p={2}>
           <Box fontWeight="bold">Activity Log</Box>
-          <Button startIcon={<DownloadIcon />} variant="outlined" sx={{color:'green',borderColor:'green'}} size="small">
+          <Button startIcon={<DownloadIcon />} variant="outlined" sx={{color:'#1E4A28',borderColor:'#1E4A28'}} size="small">
             Export CSV
           </Button>
         </Box>
@@ -523,10 +523,10 @@ const DailyStats = ({ openSidebar }) => {
         <Table>
           <TableHead>
             <TableRow>
-              <TableCell sx={{color:'green'}}>Time</TableCell>
-              <TableCell sx={{color:'green'}}>Action</TableCell>
-              <TableCell sx={{color:'green'}}>User / Startup</TableCell>
-              <TableCell sx={{color:'green'}}>Status</TableCell>
+              <TableCell sx={{color:'#1E4A28'}}>Time</TableCell>
+              <TableCell sx={{color:'#1E4A28'}}>Action</TableCell>
+              <TableCell sx={{color:'#1E4A28'}}>User / Startup</TableCell>
+              <TableCell sx={{color:'#1E4A28'}}>Status</TableCell>
             </TableRow>
           </TableHead>
 

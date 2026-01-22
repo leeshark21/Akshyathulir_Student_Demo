@@ -15,8 +15,11 @@ import AppliacationStatus from './Pages/Startup/ApplicationStatus/AppliacationSt
 import StartupProfile from './Pages/Startup/StartupProfiles/StartupProfile'
 import StartupMenu from './Pages/Startup/StartupMenu/StartupMenu'
 import Reports from './Pages/Reports/Reports'
-import Routementor from './Pages/Mentorship/Routementor'
+
 import Settings from './Pages/settings/settings'
+import FundingOverview from './Pages/Funding/FundingOverview'
+import Programs from './Pages/Programs/Program'
+
 
 // Layout component for sidebar + content
 const MainLayout = ({ openSidebar, toggleDrawer }) => {
@@ -44,6 +47,7 @@ function App() {
     <BrowserRouter>
       <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
         <Navbar openSidebar={openSidebar} toggleDrawer={toggleDrawer} />
+       
         <Box sx={{ flex: 1 }}>
           <Routes>
             {/* Redirect root to dashboard */}
@@ -59,7 +63,7 @@ function App() {
             </Route>
 
             {/* Startup routes */}
-            <Route path="/startups" element={<StartupMenu openSidebar={openSidebar} toggleDrawer={toggleDrawer} />}>
+            <Route path="/Startups" element={<StartupMenu openSidebar={openSidebar} toggleDrawer={toggleDrawer} />}>
               <Route index element={<StartupMenu />} />
               <Route path="menu" element={<StartupMenu />} />
               <Route path="all" element={<AllStartups />} />
@@ -80,12 +84,25 @@ function App() {
             </Route>
 
             {/* Mentorship routes */}
-            <Route path="/mentorship" element={<MainLayout openSidebar={openSidebar} toggleDrawer={toggleDrawer} />}>
+            {/* <Route path="/Mentorship" element={<MainLayout openSidebar={openSidebar} toggleDrawer={toggleDrawer} />}>
               <Route index element={<Routementor />} />
+            </Route> */}
+
+            {/* Funding Routes */}
+
+             <Route path="/Funding" element={<MainLayout openSidebar={openSidebar} toggleDrawer={toggleDrawer} />}>
+              <Route index element={<FundingOverview/>}/>
             </Route>
 
-            {/* Catch-all: redirect unknown routes to dashboard */}
-            <Route path="*" element={<Navigate to="/dashboard" replace />} />
+            {/* Program Routes */}
+
+             <Route path="/Programs" element={<MainLayout openSidebar={openSidebar} toggleDrawer={toggleDrawer} />}>
+              <Route index element={<Programs/>}/>
+            </Route>
+           
+
+
+          
           </Routes>
         </Box>
       </Box>
