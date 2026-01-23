@@ -19,6 +19,8 @@ import Reports from './Pages/Reports/Reports'
 import Settings from './Pages/settings/settings'
 import FundingOverview from './Pages/Funding/FundingOverview'
 import Programs from './Pages/Programs/Program'
+import Mentorship from './Pages/Mentorship/Mentorship'
+import MentorRoute from './Pages/Mentorship/MentorRoute'
 
 
 // Layout component for sidebar + content
@@ -45,11 +47,14 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
+
+      <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh'}}>
+
         <Navbar openSidebar={openSidebar} toggleDrawer={toggleDrawer} />
+        <MentorRoute  openSidebar={openSidebar} toggleDrawer={toggleDrawer} />
        
-        <Box sx={{ flex: 1 }}>
-          <Routes>
+        <Box sx={{ flex: 1 ,mt:8}}>
+          <Routes >
             {/* Redirect root to dashboard */}
             <Route path="/" element={<Navigate to="/dashboard" replace />} />
             
@@ -84,9 +89,10 @@ function App() {
             </Route>
 
             {/* Mentorship routes */}
-            {/* <Route path="/Mentorship" element={<MainLayout openSidebar={openSidebar} toggleDrawer={toggleDrawer} />}>
-              <Route index element={<Routementor />} />
-            </Route> */}
+            <Route path="/Mentorship" element={<MainLayout openSidebar={openSidebar} toggleDrawer={toggleDrawer} />}>
+              <Route index element={<Mentorship />} />
+            </Route>
+            {/* <MentorRoute/> */}
 
             {/* Funding Routes */}
 
@@ -99,13 +105,15 @@ function App() {
              <Route path="/Programs" element={<MainLayout openSidebar={openSidebar} toggleDrawer={toggleDrawer} />}>
               <Route index element={<Programs/>}/>
             </Route>
+            
            
-
+             
 
           
           </Routes>
         </Box>
       </Box>
+      
     </BrowserRouter>
   );
 }
