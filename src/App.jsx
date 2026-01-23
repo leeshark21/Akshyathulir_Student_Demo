@@ -1,121 +1,98 @@
-import React, { useState } from 'react'
-import { BrowserRouter, Routes, Route, Navigate, Outlet } from 'react-router-dom'
-import Navbar from "./Components/Navbar"
-import Box from '@mui/material/Box'
-import Dashboard from './Pages/Dashboard/Dashboard'
-import Overview from './Pages/Dashboard/Overview'
-import DailyStats from './Pages/Dashboard/DailyStats'
-import Notification from './Pages/Dashboard/Notification'
-import QuickActions from './Pages/Dashboard/QuickActions'
-import Siderbar from './Components/Sidebar'
-import MyStartup from './Pages/Startup/My Startup/MyStartup'
-import AllStartups from './Pages/Startup/All Startups/AllStartups'
-import ApplyIncubation from './Pages/Startup/Apply for Incubation/ApplyIncubation'
-import AppliacationStatus from './Pages/Startup/ApplicationStatus/AppliacationStatus'
-import StartupProfile from './Pages/Startup/StartupProfiles/StartupProfile'
-import StartupMenu from './Pages/Startup/StartupMenu/StartupMenu'
-import Reports from './Pages/Reports/Reports'
+import React from 'react';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { ThemeProvider } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import theme from './theme/theme';
+import DashboardLayout from './layouts/DashboardLayout';
 
-import Settings from './Pages/settings/settings'
-import FundingOverview from './Pages/Funding/FundingOverview'
-import Programs from './Pages/Programs/Program'
-import Mentorship from './Pages/Mentorship/Mentorship'
-import MentorRoute from './Pages/Mentorship/MentorRoute'
+// Dashboard Pages
+import Dashboard from './pages/Dashboard/Dashboard';
+import Overview from './pages/Dashboard/Overview';
+import DailyStats from './pages/Dashboard/DailyStats';
+import Notification from './pages/Dashboard/Notification';
+import QuickActions from './pages/Dashboard/QuickActions';
 
+// Startup Pages
+import StartupMenu from './pages/Startup/StartupMenu/StartupMenu';
+import AllStartups from './pages/Startup/All Startups/AllStartups';
+import MyStartup from './pages/Startup/My Startup/MyStartup';
+import ApplyIncubation from './pages/Startup/Apply for Incubation/ApplyIncubation';
+import ApplicationStatus from './pages/Startup/ApplicationStatus/ApplicationStatus';
+import StartupProfile from './pages/Startup/StartupProfiles/StartupProfile';
 
-// Layout component for sidebar + content
-const MainLayout = ({ openSidebar, toggleDrawer }) => {
-  return (
-    <Box sx={{ display: 'flex' }}>
-      <Siderbar open={openSidebar} toggleDrawer={toggleDrawer} />
-      <Box sx={{ flex: 1 }}>
-        <Outlet />
-      </Box>
-    </Box>
-  );
-};
+// Other Pages
+import Settings from './pages/settings/settings';
+import Reports from './components/FundingComponents/Reports'; // Moved folder
+import FundingOverview from './pages/Funding/FundingOverview';
+import Programs from './pages/Programs/Program'; // Keep filename for now
+import Mentorship from './pages/Mentorship/Mentorship';
+import AddMentor from './pages/Mentorship/AddMentor';
+import Assignmentor from './pages/Mentorship/Assignmentor';
+import MentorSchedule from './pages/Mentorship/MentorSchedule';
+import UploadResource from './pages/Mentorship/UploadResource';
 
 function App() {
-  const [openSidebar, setOpenSidebar] = useState(false);
-
-  const toggleDrawer = (open) => (event) => {
-    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-      return;
-    }
-    setOpenSidebar(open);
-  };
-
   return (
-    <BrowserRouter>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <BrowserRouter>
+        <Routes>
+          {/* Redirect root to dashboard */}
+          <Route path="/" element={<Navigate to="/dashboard" replace />} />
 
-      <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh'}}>
+          {/* Main Layout matches all these routes */}
+          <Route element={<DashboardLayout />}>
 
-        <Navbar openSidebar={openSidebar} toggleDrawer={toggleDrawer} />
-        <MentorRoute  openSidebar={openSidebar} toggleDrawer={toggleDrawer} />
-       
-        <Box sx={{ flex: 1 ,mt:8}}>
-          <Routes >
-            {/* Redirect root to dashboard */}
-            <Route path="/" element={<Navigate to="/dashboard" replace />} />
-            
-            {/* Dashboard routes */}
-            <Route path="/dashboard" element={<MainLayout openSidebar={openSidebar} toggleDrawer={toggleDrawer} />}>
-              <Route index element={<Dashboard openSidebar={openSidebar} />} />
-              <Route path="overview" element={<Overview openSidebar={openSidebar} />} />
-              <Route path="daily-stats" element={<DailyStats openSidebar={openSidebar} />} />
-              <Route path="notification" element={<Notification openSidebar={openSidebar} />} />
-              <Route path="quick-action" element={<QuickActions openSidebar={openSidebar} />} />
+            {/* Dashboard */}
+            <Route path="/dashboard">
+              <Route index element={<Dashboard />} />
+              <Route path="overview" element={<Overview />} />
+              <Route path="daily-stats" element={<DailyStats />} />
+              <Route path="notification" element={<Notification />} />
+              <Route path="quick-action" element={<QuickActions />} />
             </Route>
 
-            {/* Startup routes */}
-            <Route path="/Startups" element={<StartupMenu openSidebar={openSidebar} toggleDrawer={toggleDrawer} />}>
+            {/* Startups */}
+            <Route path="/startups">
               <Route index element={<StartupMenu />} />
               <Route path="menu" element={<StartupMenu />} />
               <Route path="all" element={<AllStartups />} />
               <Route path="my-startup" element={<MyStartup />} />
               <Route path="apply-incubation" element={<ApplyIncubation />} />
-              <Route path="status" element={<AppliacationStatus />} />
+              <Route path="status" element={<ApplicationStatus />} />
               <Route path="profile" element={<StartupProfile />} />
             </Route>
 
-            {/* Settings routes */}
-            <Route path="/settings" element={<MainLayout openSidebar={openSidebar} toggleDrawer={toggleDrawer} />}>
-              <Route index element={<Settings />} />
-            </Route>
+            {/* Funding */}
+            <Route path="/funding" element={<FundingOverview />} />
 
-            {/* Reports routes */}
-            <Route path="/reports" element={<MainLayout openSidebar={openSidebar} toggleDrawer={toggleDrawer} />}>
-              <Route index element={<Reports />} />
-            </Route>
+            {/* Programs */}
+            <Route path="/programs" element={<Programs />} />
 
-            {/* Mentorship routes */}
-            <Route path="/Mentorship" element={<MainLayout openSidebar={openSidebar} toggleDrawer={toggleDrawer} />}>
+            {/* Mentorship */}
+            <Route path="/mentorship">
               <Route index element={<Mentorship />} />
-            </Route>
-            {/* <MentorRoute/> */}
-
-            {/* Funding Routes */}
-
-             <Route path="/Funding" element={<MainLayout openSidebar={openSidebar} toggleDrawer={toggleDrawer} />}>
-              <Route index element={<FundingOverview/>}/>
+              <Route path="add-mentor" element={<AddMentor />} />
+              <Route path="assign-startup" element={<Assignmentor />} />
+              <Route path="schedule" element={<MentorSchedule />} />
+              <Route path="resources" element={<UploadResource />} />
             </Route>
 
-            {/* Program Routes */}
+            {/* Reports */}
+            <Route path="/reports" element={<Reports />} />
 
-             <Route path="/Programs" element={<MainLayout openSidebar={openSidebar} toggleDrawer={toggleDrawer} />}>
-              <Route index element={<Programs/>}/>
-            </Route>
-            
-           
-             
+            {/* Settings */}
+            <Route path="/settings" element={<Settings />} />
 
-          
-          </Routes>
-        </Box>
-      </Box>
-      
-    </BrowserRouter>
+          </Route>
+
+          {/* Fallback */}
+          <Route path="*" element={<Navigate to="/dashboard" replace />} />
+        </Routes>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
 
-export default App
+export default App;
+

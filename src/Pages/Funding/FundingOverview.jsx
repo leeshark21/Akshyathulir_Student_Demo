@@ -1,8 +1,8 @@
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
-import FundingSummaryCards from "../../Components/FundingSummaryCards";
-import FundingCharts from "../../Components/FundingCharts";
-import FundingStatusTable from "../../Components/FundingStatusTable";
+import FundingSummaryCards from "../../components/FundingComponents/FundingSummaryCards";
+import FundingCharts from "../../components/FundingComponents/FundingCharts";
+import FundingStatusTable from "../../components/FundingComponents/FundingStatusTable";
 
 export default function FundingOverview() {
   return (

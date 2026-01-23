@@ -12,7 +12,7 @@ import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import FilterListIcon from "@mui/icons-material/FilterList";
 import AddIcon from "@mui/icons-material/Add";
-import MentorButton from "../../Components/MentorComponets/MentorButton";
+import MentorButton from "../../components/MentorComponents/MentorButton";
 
 export default function MentorSchedule() {
   const [view, setView] = React.useState("day");
@@ -20,8 +20,8 @@ export default function MentorSchedule() {
   const days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   return (
-    <Box sx={{ mt:4,p: 3, backgroundColor: "#f6f8f9", minHeight: "100vh" }}>
-      <MentorButton/>
+    <Box sx={{ mt: 4, p: 3, backgroundColor: "#f6f8f9", minHeight: "100vh" }}>
+      <MentorButton />
       <Paper sx={{ p: 3, borderRadius: 4 }} elevation={3}>
         {/* HEADER */}
         <Typography variant="h6" fontWeight={700} mb={3}>
@@ -101,7 +101,7 @@ export default function MentorSchedule() {
                 <Paper
                   sx={{
                     height: 110,
-                    width:160,
+                    width: 160,
                     p: 1,
                     borderRadius: 2,
                     position: "relative",

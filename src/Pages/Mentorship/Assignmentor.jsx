@@ -16,7 +16,7 @@ import Tab from '@mui/material/Tab';
 import Select from '@mui/material/Select';
 import FilterListIcon from "@mui/icons-material/FilterList";
 import PeopleIcon from "@mui/icons-material/People";
-import MentorButton from "../../Components/MentorComponets/MentorButton";
+import MentorButton from "../../components/MentorComponents/MentorButton";
 
 /* -------------------- SAMPLE DATA -------------------- */
 const mentors = [
@@ -58,7 +58,7 @@ export default function Assignmentor() {
 
   return (
     <Box mt={5} p={3} bgcolor="#f3faf6" minHeight="100vh">
-      <MentorButton/>
+      <MentorButton />
       <Grid container spacing={3}>
 
         {/* ================= LEFT PANEL ================= */}
@@ -200,7 +200,7 @@ export default function Assignmentor() {
                 <Button
                   variant="contained"
                   sx={{
-                    fontSize:14,
+                    fontSize: 14,
                     bgcolor: "#2e7d32",
                     borderRadius: 20,
                     px: 10,
@@ -214,10 +214,10 @@ export default function Assignmentor() {
               <Typography variant="caption" color="green">
                 Ready to assign mentor to EcoSolutions.
               </Typography>
-                <br/>
+              <br />
               <Button
                 variant="outlined"
-                sx={{ mt: 2, borderRadius: 20 ,color:"green"}}
+                sx={{ mt: 2, borderRadius: 20, color: "green" }}
               >
                 Cancel
               </Button>

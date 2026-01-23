@@ -39,16 +39,16 @@ export default function StartupMenu({ openSidebar }) {
 
   return (
     <Box sx={{
-      mt:1,
+      mt: 1,
       flexGrow: 1,
       ml: openSidebar ? '240px' : '0px',
       transition: 'margin 0.3s ease',
       width: '100%',
       backgroundColor: '#f8f9fa',
       mb: 2
-      
+
     }}>
-      <Box sx={{ 
+      <Box sx={{
         backgroundColor: 'white',
         borderBottom: '1px solid #e0e0e0',
         px: { xs: 2, sm: 3, md: 4 },
@@ -71,34 +71,14 @@ export default function StartupMenu({ openSidebar }) {
             },
           }}
         >
-          {['My Startup', 'All Startups', 'Apply for Incubation','Application Status' ,'Startup Profiles'].map((label, index) => (
-            <Tab
-              key={index}
-              label={label}
-              component={Link}
-              to={`/startups/${label.toLowerCase().replace(/\s+/g, '-')}`}
-              sx={{
-                textTransform: 'none',
-                fontWeight: 500,
-                fontSize: '0.95rem',
-                minHeight: 60,
-                px: { xs: 2, sm: 3 },
-                color: '#999',
-                transition: 'all 0.2s ease',
-                '&:hover': {
-                  color: '#1E4A28',
-                  backgroundColor: 'rgba(30, 74, 40, 0.02)',
-                },
-                '&.Mui-selected': {
-                  color: '#1E4A28',
-                  fontWeight: 600,
-                },
-              }}
-            />
-          ))}
+          <Tab label="My Startup" component={Link} to="/startups/my-startup" />
+          <Tab label="All Startups" component={Link} to="/startups/all" />
+          <Tab label="Apply for Incubation" component={Link} to="/startups/apply-incubation" />
+          <Tab label="Application Status" component={Link} to="/startups/status" />
+          <Tab label="Startup Profiles" component={Link} to="/startups/profile" />
         </Tabs>
       </Box>
-      
+
       <Outlet />
     </Box>
   );

@@ -18,7 +18,7 @@ import TableBody from '@mui/material/TableBody';
 import InputAdornment from '@mui/material/InputAdornment';
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import SearchIcon from "@mui/icons-material/Search";
-import MentorButton from "../../Components/MentorComponets/MentorButton";
+import MentorButton from "../../components/MentorComponents/MentorButton";
 
 const UploadResourceContent = () => {
   const [file, setFile] = useState(null);
@@ -83,8 +83,8 @@ const UploadResourceContent = () => {
   );
 
   return (
-    <Box sx={{ mt:4,p: 3, background: "#f5f6f8", minHeight: "100vh" }}>
-      <MentorButton/>
+    <Box sx={{ mt: 4, p: 3, background: "#f5f6f8", minHeight: "100vh" }}>
+      <MentorButton />
       <Typography variant="h5" fontWeight={600} mb={3}>
         Mentor Upload Resources
       </Typography>

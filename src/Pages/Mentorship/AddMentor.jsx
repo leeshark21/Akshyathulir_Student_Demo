@@ -13,12 +13,12 @@ import Avatar from '@mui/material/Avatar';
 import Switch from '@mui/material/Switch';
 import Stack from '@mui/material/Stack';
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
-import MentorButton from "../../Components/MentorComponets/MentorButton";
+import MentorButton from "../../components/MentorComponents/MentorButton";
 
 export default function AddMentor() {
   return (
-    <Box sx={{mt:4, p: 3, backgroundColor: "#f6f8f9", minHeight: "100vh" }}>
-        <MentorButton/>
+    <Box sx={{ mt: 4, p: 3, backgroundColor: "#f6f8f9", minHeight: "100vh" }}>
+      <MentorButton />
       <Grid container spacing={4}>
         {/* LEFT FORM */}
         <Grid size={7}>
@@ -127,7 +127,7 @@ export default function AddMentor() {
             elevation={3}
             sx={{
               p: 4,
-              
+
               borderRadius: 4,
               textAlign: "center",
             }}

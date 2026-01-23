@@ -10,8 +10,8 @@ import LocalHospitalIcon from "@mui/icons-material/LocalHospital";
 // import EcoIcon from "@mui/icons-material/Eco";
 
 
-import ProgramCard from "../../Components/ProgramsComponnts/ProgramCard";
-import FundingProgress from "../../Components/ProgramsComponnts/FundingProgress";
+import ProgramCard from "../../components/ProgramsComponents/ProgramCard";
+import FundingProgress from "../../components/ProgramsComponents/FundingProgress";
 
 const Programs = () => {
   return (

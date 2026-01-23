@@ -138,7 +138,7 @@ const DailyStats = ({ openSidebar }) => {
   return (
     <Box>
       <Dashboard openSidebar={openSidebar}/> 
-      <Box sx={{ p: { xs: 2, sm: 3, md: 4 },backgroundColor: '#f8f9fa', flexGrow: 1, width: '100%', ml: openSidebar ? '240px' : '0px', }}>
+      <Box sx={{ p: { xs: 2, sm: 3, md: 4 },backgroundColor: '#f8f9fa', flexGrow: 1, width: '100%'  }}>
 
       <Typography
         variant="h5" sx={{

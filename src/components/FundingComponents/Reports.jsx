@@ -17,6 +17,10 @@ import AttachMoneyIcon from "@mui/icons-material/AttachMoney";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import SearchIcon from "@mui/icons-material/Search";
 
+import Modal from '@mui/material/Modal';
+import AddFunding from "./AddFunding";
+
+
 const StatCard = ({ icon, title, value }) => (
     <Card sx={{
         display: 'flex',
@@ -128,6 +132,7 @@ const ReportCard = ({ icon, title, line1, line2 }) => (
 export default function Reports() {
     const [tab, setTab] = React.useState(0);
 
+
     return (
         <Box p={4} bgcolor="#f6f7f9" minHeight="100vh">
             {/* Header */}
@@ -135,9 +140,7 @@ export default function Reports() {
                 <Typography variant="h5" fontWeight="bold">
                     Reports
                 </Typography>
-                <Button variant="contained" color="success">
-                    + Add Funding
-                </Button>
+                <AddFunding/>
             </Box>
 
             {/* Top Stats */}
