@@ -1,318 +1,413 @@
-import React, { useState } from 'react';
-import { useTheme } from '@mui/material';
-import Box from '@mui/material/Box';
-import Typography from '@mui/material/Typography';
-import Grid from '@mui/material/Grid';
-import Card from '@mui/material/Card';
-import Checkbox from '@mui/material/Checkbox';
-import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
+import React from "react";
+import { useTheme } from "@mui/material/styles";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography";
+import Grid from "@mui/material/Grid";
+import Card from "@mui/material/Card";
+import Checkbox from "@mui/material/Checkbox";
 
-import AcUnitIcon from '@mui/icons-material/AcUnit';
-import PowerIcon from '@mui/icons-material/Power';
-import ChairIcon from '@mui/icons-material/Chair';
-import WifiIcon from '@mui/icons-material/Wifi';
-import LanIcon from '@mui/icons-material/Lan';
+import AcUnitIcon from "@mui/icons-material/AcUnit";
+import PowerIcon from "@mui/icons-material/Power";
+import ChairIcon from "@mui/icons-material/Chair";
+import WifiIcon from "@mui/icons-material/Wifi";
+import LanIcon from "@mui/icons-material/Lan";
+import SchoolIcon from "@mui/icons-material/School";
+import GavelIcon from "@mui/icons-material/Gavel";
 import TwoWheelerIcon from '@mui/icons-material/TwoWheeler';
 import DirectionsCarIcon from '@mui/icons-material/DirectionsCar';
-import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
-import EventIcon from '@mui/icons-material/Event';
-import PrintIcon from '@mui/icons-material/Print';
-import LocalCafeIcon from '@mui/icons-material/LocalCafe';
-import SchoolIcon from '@mui/icons-material/School';
-import GavelIcon from '@mui/icons-material/Gavel';
 import BusinessCenterIcon from '@mui/icons-material/BusinessCenter';
 import CampaignIcon from '@mui/icons-material/Campaign';
+import MeetingRoomIcon from '@mui/icons-material/MeetingRoom';
+import InsertInvitationIcon from '@mui/icons-material/InsertInvitation';
+import FreeBreakfastIcon from '@mui/icons-material/FreeBreakfast';
+import PrintIcon from '@mui/icons-material/Print';
 
-const FacilityItem = ({ icon, label, checked, onChange }) => {
+/* ---------- Single Facility Item ---------- */
+const FacilityItem = ({ icon, label, checked, onToggle }) => {
   const theme = useTheme();
-  
+
   return (
-    <Box 
-      onClick={onChange}
-      sx={{ 
-        display: 'flex', 
-        alignItems: 'center', 
-        p: 2, 
-        borderRadius: '12px',
-        border: `1.5px solid ${checked ? theme.palette.primary.main : '#EEEEEE'}`,
-        bgcolor: checked ? '#F0F7F1' : 'white',
-        cursor: 'pointer',
-        transition: 'all 0.2s',
-        '&:hover': {
-          borderColor: theme.palette.primary.main,
-          bgcolor: '#F9FCF9'
-        }
+    <Box
+      onClick={onToggle}
+      sx={{
+        display: "flex",
+        alignItems: "center",
+        p: 2,
+        mb: 1.5,
+        
+        
+        cursor: "pointer",
+       
       }}
     >
-      <Box sx={{ 
-        mr: 2, 
-        color: checked ? 'primary.main' : '#777',
-        display: 'flex',
-        alignItems: 'center'
-      }}>
-        {React.cloneElement(icon, { fontSize: 'medium' })}
-      </Box>
-      <Typography sx={{ 
-        flexGrow: 1, 
-        fontWeight: 500, 
-        color: checked ? 'primary.main' : '#333',
-        fontSize: '0.95rem'
-      }}>
+      <Checkbox   size="small" checked={checked} sx={{ color: "#1E4A28" }} />
+     
+
+      <Typography sx={{ fontSize: "0.875rem", color: "#555"  }}>
         {label}
       </Typography>
-      <Checkbox 
-        checked={checked} 
-        onChange={onChange}
-        sx={{ 
-          p: 0,
-          color: '#DDD',
-          '&.Mui-checked': { color: 'primary.main' }
-        }} 
-      />
+
+      
     </Box>
   );
 };
 
-const SectionHeader = ({ title }) => (
-  <Typography variant="h6" sx={{ 
-    mb: 2, 
-    fontWeight: 600, 
-    color: '#1E4A28', 
-    fontSize: '1.1rem',
-    display: 'flex',
-    alignItems: 'center',
-    '&::before': {
-      content: '""',
-      display: 'block',
-      width: 4,
-      height: 24,
-      bgcolor: '#1E4A28',
-      mr: 1.5,
-      borderRadius: 4
-    }
-  }}>
-    {title}
-  </Typography>
-);
+/* ---------- MAIN COMPONENT ---------- */
+const FacilitiesAmenitiesStep = ({ supportData, setSupportData }) => {
+  /* frontend → backend mapping */
+  const facilityKeyMap = {
+    ac: "workspace_comfort",
+    power: "workspace_comfort",
+    seating: "workspace_comfort",
 
-const FacilitiesAmenitiesStep = () => {
-  const [facilities, setFacilities] = useState({
-    ac: false,
-    power: true,
-    seating: true,
-    wifi: true,
-    lan: false,
-    twoWheeler: false,
-    fourWheeler: false,
-    meetingRoom: false,
-    seminarHall: false,
-    printing: false,
-    pantry: false,
-    mentorship: true,
-    legal: false,
-    demoDay: true,
-    govSchemes: false
-  });
+    wifi: "connectivity_parking",
+    lan: "connectivity_parking",
+    two_parking: "connectivity_parking",
+    four_parking: "connectivity_parking",
 
-  const toggleFacility = (key) => {
-    setFacilities(prev => ({ ...prev, [key]: !prev[key] }));
+    mentorship: "extra_offers_incubatees",
+    legal: "extra_offers_incubatees",
+    demo: "extra_offers_incubatees",
+    scheme: "extra_offers_incubatees",
+
+    meeting_rooms: "common_facilities",
+    seminar_halls: "common_facilities",
+    printing_scanning: "common_facilities",
+    cafeteria_pantry: "common_facilities",
+
   };
 
+  /* ---------- Toggle handler ---------- */
+  const toggleFacility = (frontendKey, label) => {
+    const backendKey = facilityKeyMap[frontendKey];
+
+    setSupportData((prev) => ({
+  ...prev,
+  [backendKey]: (prev[backendKey] || []).includes(label)
+    ? prev[backendKey].filter((v) => v !== label)
+    : [...(prev[backendKey] || []), label],
+}));
+  }
+
+
+  const isChecked = (backendKey, label) =>
+    supportData[backendKey]?.includes(label);
+
   return (
-    <Box>
-     
+    <Box mt={3}>
+      <Grid container spacing={3}>
 
-      <Grid container marginTop={3} spacing={3}>
-        {/* Main Card — Infrastructure & Facilities */}
-        <Grid sx={{border:'2px solid green'}} size={12}>
-           <Box sx={{ bgcolor: 'green', p: '14px 20px', color: 'white' }}>
-              <Typography sx={{ fontWeight: 600, fontSize: '1rem' }}>Type of Support Required</Typography>
-            </Box>
-          <Card sx={{ p:2}}>
-           
-            
-            <Grid container spacing={4}>
-              <Grid item xs={12} md={6}>
-                <Typography variant="subtitle2" sx={{ mb: 2, color: '#555', fontWeight: 600 }}>
-                  Workspace & Comfort
-                </Typography>
-                <Grid container spacing={2}>
-                  <Grid item xs={12}>
-                    <FacilityItem 
-                      icon={<AcUnitIcon />} 
-                      label="Air Conditioned Workspace" 
-                      checked={facilities.ac}
-                      onChange={() => toggleFacility('ac')}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <FacilityItem 
-                      icon={<PowerIcon />} 
-                      label="24x7 Power Backup" 
-                      checked={facilities.power}
-                      onChange={() => toggleFacility('power')}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <FacilityItem 
-                      icon={<ChairIcon />} 
-                      label="Comfortable Seating" 
-                      checked={facilities.seating}
-                      onChange={() => toggleFacility('seating')}
-                    />
-                  </Grid>
-                </Grid>
-              </Grid>
+        {/* ---------- Amenities ---------- */}
+        <Grid size={12} sx={{ border: "2px solid green", borderRadius: 2 }}>
+          <Box sx={{ bgcolor: "green", p: 2, color: "white" }}>
+            <Typography fontWeight={600}>Amenities Provider</Typography>
+          </Box>
 
-              <Grid item xs={12} md={6}>
-                <Typography variant="subtitle2" sx={{ mb: 2, color: '#555', fontWeight: 600 }}>
-                  Connectivity & Parking
-                </Typography>
-                <Grid container spacing={2}>
-                  <Grid item xs={12} sm={6}>
-                    <FacilityItem 
-                      icon={<WifiIcon />} 
-                      label="High-Speed Wi-Fi" 
-                      checked={facilities.wifi}
-                      onChange={() => toggleFacility('wifi')}
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <FacilityItem 
-                      icon={<LanIcon />} 
-                      label="LAN / Ethernet" 
-                      checked={facilities.lan}
-                      onChange={() => toggleFacility('lan')}
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <FacilityItem 
-                      icon={<TwoWheelerIcon />} 
-                      label="Two-Wheeler Parking" 
-                      checked={facilities.twoWheeler}
-                      onChange={() => toggleFacility('twoWheeler')}
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <FacilityItem 
-                      icon={<DirectionsCarIcon />} 
-                      label="Four-Wheeler Parking" 
-                      checked={facilities.fourWheeler}
-                      onChange={() => toggleFacility('fourWheeler')}
-                    />
-                  </Grid>
-                </Grid>
-              </Grid>
-            </Grid>
-          </Card>
-        </Grid>
-
-        {/* Secondary Card — Additional Services & Offers */}
-        <Grid sx={{border:'2px solid green'}}   size={12}>
-            <Box sx={{ bgcolor: 'green', p: '14px 20px', color: 'white' }}>
-              <Typography sx={{ fontWeight: 600, fontSize: '1rem' }}>Additional Services & Support</Typography>
-            </Box>
           <Card sx={{ p: 3 }}>
-           
+            <Typography fontWeight={600} mb={2} sx={{  fontWeight: 600,
+        color: "green",
+        mb: 1,
+        fontSize: "0.95rem",}}>
+              Workspace & Comfort
+            </Typography>
+            <Grid container spacing={3}>
 
-            <Grid container spacing={4}>
-              <Grid item xs={12} md={6}>
-                <Typography variant="subtitle2" sx={{ mb: 2, color: '#555', fontWeight: 600 }}>
-                  Common Facilities
-                </Typography>
-                <Grid container spacing={2}>
-                  <Grid item xs={12} sm={6}>
-                    <FacilityItem 
-                      icon={<MeetingRoomIcon />} 
-                      label="Meeting Rooms" 
-                      checked={facilities.meetingRoom}
-                      onChange={() => toggleFacility('meetingRoom')}
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <FacilityItem 
-                      icon={<EventIcon />} 
-                      label="Seminar Hall" 
-                      checked={facilities.seminarHall}
-                      onChange={() => toggleFacility('seminarHall')}
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <FacilityItem 
-                      icon={<PrintIcon />} 
-                      label="Printing & Scanning" 
-                      checked={facilities.printing}
-                      onChange={() => toggleFacility('printing')}
-                    />
-                  </Grid>
-                  <Grid item xs={12} sm={6}>
-                    <FacilityItem 
-                      icon={<LocalCafeIcon />} 
-                      label="Cafeteria / Pantry" 
-                      checked={facilities.pantry}
-                      onChange={() => toggleFacility('pantry')}
-                    />
-                  </Grid>
-                </Grid>
+              {/* Workspace */}
+
+
+              <Grid size={{ xs: 12, md: 4 }}>
+                <FacilityItem
+                  icon={<AcUnitIcon />}
+                  label="Air Conditioned Workspace"
+                  checked={isChecked(
+                    "workspace_comfort",
+                    "Air Conditioned Workspace"
+                  )}
+                  onToggle={() =>
+                    toggleFacility(
+                      "ac",
+                      "Air Conditioned Workspace"
+                    )
+                  }
+                />
               </Grid>
 
-              <Grid item xs={12} md={6}>
-                <Typography variant="subtitle2" sx={{ mb: 2, color: '#555', fontWeight: 600 }}>
-                  Extra Offers for Incubatees
-                </Typography>
-                <Grid container spacing={2}>
-                  <Grid item xs={12}>
-                    <FacilityItem 
-                      icon={<SchoolIcon />} 
-                      label="Free Mentorship Sessions" 
-                      checked={facilities.mentorship}
-                      onChange={() => toggleFacility('mentorship')}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <FacilityItem 
-                      icon={<GavelIcon />} 
-                      label="Legal Consultation Support" 
-                      checked={facilities.legal}
-                      onChange={() => toggleFacility('legal')}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <FacilityItem 
-                      icon={<BusinessCenterIcon />} 
-                      label="Investor Demo Day Access" 
-                      checked={facilities.demoDay}
-                      onChange={() => toggleFacility('demoDay')}
-                    />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <FacilityItem 
-                      icon={<CampaignIcon />} 
-                      label="Govt. Scheme Awareness" 
-                      checked={facilities.govSchemes}
-                      onChange={() => toggleFacility('govSchemes')}
-                    />
-                  </Grid>
-                </Grid>
+              <Grid size={{ xs: 12, md: 4 }}>
+
+                <FacilityItem
+                  icon={<PowerIcon />}
+                  label="24x7 Power Backup"
+                  checked={isChecked(
+                    "workspace_comfort",
+                    "24x7 Power Backup"
+                  )}
+                  onToggle={() =>
+                    toggleFacility(
+                      "power",
+                      "24x7 Power Backup"
+                    )
+                  }
+                />
+
+              </Grid>
+
+              <Grid size={{ xs: 12, md: 4 }}>
+
+                <FacilityItem
+                  icon={<ChairIcon />}
+                  label="Comfortable Seating"
+                  checked={isChecked(
+                    "workspace_comfort",
+                    "Comfortable Seating"
+                  )}
+                  onToggle={() =>
+                    toggleFacility(
+                      "seating",
+                      "Comfortable Seating"
+                    )
+                  }
+                />
+
               </Grid>
             </Grid>
-            
-            {/* Special Requests */}
-            <Box sx={{ mt: 4 }}>
-              <Typography variant="subtitle2" sx={{ mb: 1, color: '#555', fontWeight: 600 }}>
-                Any additional facility or special requirement?
-              </Typography>
-              <TextField
-                fullWidth
-                multiline
-                rows={3}
-                placeholder="Please describe any specific requirements you might have..."
-                sx={{ bgcolor: '#F9F9F9' }}
-              />
-            </Box>
+
+            {/* Connectivity */}
+            <Typography fontWeight={600} mb={2} sx={{  fontWeight: 600,
+        color: "green",
+        mb: 1,
+        fontSize: "0.95rem",}}>
+              Connectivity & Parking
+            </Typography>
+            <Grid container spacing={2}>
+              <Grid size={{ xs: 12, md: 4 }}>
+                <FacilityItem
+                  icon={<WifiIcon />}
+                  label="High-Speed Wi-Fi"
+                  checked={isChecked(
+                    "connectivity_parking",
+                    "High-Speed Wi-Fi"
+                  )}
+                  onToggle={() =>
+                    toggleFacility("wifi", "High-Speed Wi-Fi")
+                  }
+                />
+              </Grid>
+
+              <Grid size={{ xs: 12, md: 4 }}>
+                <FacilityItem
+                  icon={<LanIcon />}
+                  label="LAN / Ethernet"
+                  checked={isChecked(
+                    "connectivity_parking",
+                    "LAN / Ethernet"
+                  )}
+                  onToggle={() =>
+                    toggleFacility("lan", "LAN / Ethernet")
+                  }
+                />
+              </Grid>
+
+              <Grid size={{ xs: 12, md: 4 }}>
+                <FacilityItem
+                  icon={<TwoWheelerIcon />}
+                  label="Two Wheeler Parking"
+                  checked={isChecked(
+                    "connectivity_parking",
+                    "twowheelerparking"
+                  )}
+                  onToggle={() =>
+                    toggleFacility("two_parking", "twowheelerparking")
+                  }
+                />
+
+              </Grid>
+
+              <Grid size={{ xs: 12, md: 4 }}>
+                <FacilityItem
+                  icon={<DirectionsCarIcon />}
+                  label="Four Wheeler Parking"
+                  checked={isChecked(
+                    "connectivity_parking",
+                    "fourwheelerparking"
+                  )}
+                  onToggle={() =>
+                    toggleFacility("four_parking", "fourwheelerparking")
+                  }
+                />
+
+              </Grid>
+            </Grid>
+
+
+
+
           </Card>
         </Grid>
+
+        {/* ---------- Common Facilities ---------- */}
+        <Grid size={12} sx={{ border: "2px solid green", borderRadius: 2 }}>
+          <Box sx={{ bgcolor: "green", p: 2, color: "white" }}>
+            <Typography fontWeight={600}>
+              Additional Services & Support
+            </Typography>
+          </Box>
+          <Card sx={{ p: 3 }}>
+            <Typography fontWeight={600} mb={2} sx={{  fontWeight: 600,
+        color: "green",
+        mb: 1,
+        fontSize: "0.95rem",}}>
+              Common Facilities
+            </Typography>
+            <Grid container spacing={2}>
+              <Grid size={{ xs: 12, md: 4 }}>
+                <FacilityItem
+                  icon={<MeetingRoomIcon />}
+                  label="Meeting Rooms"
+                  checked={isChecked(
+                    "common_facilities",
+                    "Meeting Rooms"
+                  )}
+                  onToggle={() =>
+                    toggleFacility(
+                      "meeting_rooms",
+                      "Meeting Rooms"
+                    )
+                  }
+                />
+              </Grid>
+              <Grid size={{ xs: 12, md: 4 }}>
+                <FacilityItem
+                  icon={<InsertInvitationIcon />}
+                  label="Seminar Halls"
+                  checked={isChecked(
+                    "common_facilities",
+                    "Seminar Halls"
+                  )}
+                  onToggle={() =>
+                    toggleFacility(
+                      "seminar_halls",
+                      "Seminar Halls"
+                    )
+                  }
+                />
+              </Grid>
+               <Grid size={{ xs: 12, md: 4 }}>
+                <FacilityItem
+                  icon={<PrintIcon />}
+                  label="Printing & Scanning Services"
+                  checked={isChecked(
+                    "common_facilities",
+                    "Printing & Scanning Services"
+                  )}
+                  onToggle={() =>
+                    toggleFacility(
+                      "printing_scanning",
+                      "Printing & Scanning Services"
+                    )
+                  }
+                />
+              </Grid>
+               <Grid size={{ xs: 12, md: 4 }}>
+                <FacilityItem
+                  icon={<FreeBreakfastIcon />}
+                  label="Cafeteria / Pantry"
+                  checked={isChecked(
+                    "common_facilities",
+                    "Cafeteria / Pantry"
+                  )}
+                  onToggle={() =>
+                    toggleFacility(
+                      "cafeteria_pantry",
+                      "Cafeteria / Pantry"
+                    )
+                  }
+                />
+              </Grid>
+            </Grid>
+
+
+
+          </Card>
+
+          <Card sx={{ p: 3 }}>
+            <Typography fontWeight={600} mb={2}  sx={{  fontWeight: 600,
+        color: "green",
+        mb: 1,
+        fontSize: "0.95rem",}}>
+              Extra Offer for Incubatees
+            </Typography>
+            <Grid container spacing={2}>
+              <Grid size={{ xs: 12, md: 4 }}>
+                <FacilityItem
+                  icon={<SchoolIcon />}
+                  label="Free Mentorship Sessions"
+                  checked={isChecked(
+                    "extra_offers_incubatees",
+                    "Free Mentorship Sessions"
+                  )}
+                  onToggle={() =>
+                    toggleFacility(
+                      "mentorship",
+                      "Free Mentorship Sessions"
+                    )
+                  }
+                />
+              </Grid>
+              <Grid size={{ xs: 12, md: 4 }}>
+                <FacilityItem
+                  icon={<GavelIcon />}
+                  label="Legal Consultation Support"
+                  checked={isChecked(
+                    "extra_offers_incubatees",
+                    "Legal Consultation Support"
+                  )}
+                  onToggle={() =>
+                    toggleFacility(
+                      "legal",
+                      "Legal Consultation Support"
+                    )
+                  }
+                />
+              </Grid>
+               <Grid size={{ xs: 12, md: 4 }}>
+                <FacilityItem
+                  icon={<BusinessCenterIcon />}
+                  label="Investor Demo Day Access"
+                  checked={isChecked(
+                    "extra_offers_incubatees",
+                    "Investor Demo Day Acccess"
+                  )}
+                  onToggle={() =>
+                    toggleFacility(
+                      "demo",
+                      "Investor Demo Day Acccess"
+                    )
+                  }
+                />
+              </Grid>
+               <Grid size={{ xs: 12, md: 4 }}>
+                <FacilityItem
+                  icon={<CampaignIcon />}
+                  label="Govt. Scheme Awareness"
+                  checked={isChecked(
+                    "extra_offers_incubatees",
+                    "Govt Scheme Awareness"
+                  )}
+                  onToggle={() =>
+                    toggleFacility(
+                      "scheme",
+                      "Govt Scheme Awareness"
+                    )
+                  }
+                />
+              </Grid>
+            </Grid>
+
+
+
+          </Card>
+        </Grid>
+
       </Grid>
     </Box>
   );

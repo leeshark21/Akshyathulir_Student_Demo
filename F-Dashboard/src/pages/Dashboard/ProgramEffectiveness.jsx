@@ -1,5 +1,7 @@
 import React from 'react';
-import { Grid, Typography, Box } from '@mui/material';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 import AssignmentTurnedInIcon from '@mui/icons-material/AssignmentTurnedIn';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import ScoreIcon from '@mui/icons-material/Score';
@@ -21,7 +23,7 @@ const ProgramEffectiveness = () => {
 
       {/* KPI Cards */}
       <Grid container spacing={3} sx={{ mb: 4 }}>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid size={4} sm={6} md={3}>
           <StatCard
             title="Avg. Completion Rate"
             value="89%"
@@ -31,7 +33,7 @@ const ProgramEffectiveness = () => {
             trend="up"
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid size={4} sm={6} md={3}>
           <StatCard
             title="Startup Survival Rate"
             value="92%"
@@ -41,7 +43,7 @@ const ProgramEffectiveness = () => {
             trend="up"
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid size={4} sm={6} md={3}>
           <StatCard
             title="Overall KPI Score"
             value="4.7/5"
@@ -51,7 +53,7 @@ const ProgramEffectiveness = () => {
             trend="up"
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid size={4} sm={6} md={3}>
           <StatCard
             title="High Performers"
             value="18"
@@ -65,27 +67,27 @@ const ProgramEffectiveness = () => {
 
       {/* Charts Section 1 */}
       <Grid container spacing={3} sx={{ mb: 4 }}>
-        <Grid item xs={12} md={4}>
+        <Grid size={12} md={4}>
           <CompletionRateChart />
         </Grid>
-        <Grid item xs={12} md={8}>
+        <Grid size={12} md={8}>
           <SurvivalRateChart />
         </Grid>
       </Grid>
 
       {/* Charts Section 2 */}
       <Grid container spacing={3} sx={{ mb: 4 }}>
-        <Grid item xs={12} md={6}>
+        <Grid size={12} md={6}>
           <CohortComparisonChart />
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid size={12} md={6}>
           <BenchmarkRadarChart />
         </Grid>
       </Grid>
 
       {/* Table Section */}
       <Grid container spacing={3}>
-        <Grid item xs={12}>
+        <Grid size={12}>
           <ProgramTable />
         </Grid>
       </Grid>

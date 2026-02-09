@@ -1,5 +1,7 @@
 import React from 'react';
-import { Grid, Typography, Box } from '@mui/material';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 import BusinessIcon from '@mui/icons-material/Business';
 import SchoolIcon from '@mui/icons-material/School';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
@@ -19,7 +21,7 @@ const Overview = () => {
 
       {/* KPI Cards Section */}
       <Grid container spacing={3} sx={{ mb: 4 }}>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid size={4} sm={6} md={3}>
           <StatCard
             title="Total Incubated Startups"
             value="124"
@@ -29,7 +31,7 @@ const Overview = () => {
             trend="up"
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid size={4} sm={6} md={3}>
           <StatCard
             title="Graduated Companies"
             value="45"
@@ -39,7 +41,7 @@ const Overview = () => {
             trend="up"
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid size={4} sm={6} md={3}>
           <StatCard
             title="Total Funding Raised"
             value="$12.5M"
@@ -48,7 +50,7 @@ const Overview = () => {
             subtext="Avg $100k per startup"
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid size={4} sm={6} md={3}>
           <StatCard
             title="Active Mentors"
             value="68"
@@ -62,16 +64,16 @@ const Overview = () => {
 
       {/* Charts Section */}
       <Grid container spacing={3}>
-        <Grid item xs={12} md={8}>
+        <Grid size={6} md={8}>
           <GrowthTrendChart />
         </Grid>
-        <Grid item xs={12} md={4}>
+        <Grid size={6} md={4}>
           <SectorDonutChart />
         </Grid>
       </Grid>
       
       <Grid container spacing={3} sx={{ mt: 1 }}>
-        <Grid item xs={12} md={12}>
+        <Grid size={12} md={12}>
            <Typography variant="h6" sx={{ mb: 2, mt: 2, color: '#1E4A28' }}>
             Financial Overview
           </Typography>

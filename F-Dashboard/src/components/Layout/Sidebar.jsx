@@ -1,17 +1,15 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import {
-  Drawer,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemIcon,
-  ListItemText,
-  Toolbar,
-  Divider,
-  Box,
-  Typography
-} from '@mui/material';
+import Drawer from '@mui/material/Drawer';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemButton from '@mui/material/ListItemButton';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import Toolbar from '@mui/material/Toolbar';
+import Divider from '@mui/material/Divider';
+import Box from '@mui/material/Box';
+import Typography from '@mui/material/Typography';
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import PeopleIcon from '@mui/icons-material/People';
 import SchoolIcon from '@mui/icons-material/School';
@@ -22,7 +20,9 @@ import SettingsIcon from '@mui/icons-material/Settings';
 const drawerWidth = 260;
 
 const menuItems = [
-  { text: 'Portfolio Overview', icon: <DashboardIcon />, path: '/dashboard' },
+  { text: 'Dashboard Overview', icon: <DashboardIcon />, path: '/dashboard' },
+  { text: 'Profile', icon: <PeopleIcon />, path: '/review' },
+ 
   { text: 'Mentor Network', icon: <PeopleIcon />, path: '/mentors' },
   { text: 'Program Effectiveness', icon: <SchoolIcon />, path: '/program' },
   { text: 'Funding Tracker', icon: <MonetizationOnIcon />, path: '/funding' },
@@ -43,7 +43,7 @@ const Sidebar = () => {
     >
       <Toolbar sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center', px: 2 }}>
         <Typography variant="h6" noWrap component="div" sx={{ color: '#fff', fontWeight: 'bold' }}>
-          INCUBATION CMS
+          INCUBATION 
         </Typography>
       </Toolbar>
       <Divider sx={{ borderColor: 'rgba(255,255,255,0.1)' }} />

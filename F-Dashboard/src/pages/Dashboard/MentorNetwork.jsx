@@ -1,5 +1,7 @@
 import React from 'react';
-import { Grid, Typography, Box } from '@mui/material';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 import PeopleIcon from '@mui/icons-material/People';
 import StarIcon from '@mui/icons-material/Star';
 import PersonOffIcon from '@mui/icons-material/PersonOff';
@@ -19,7 +21,7 @@ const MentorNetwork = () => {
 
       {/* KPI Cards */}
       <Grid container spacing={3} sx={{ mb: 4 }}>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid size={4} sm={6} md={3}>
           <StatCard
             title="Total Mentors"
             value="150"
@@ -28,7 +30,7 @@ const MentorNetwork = () => {
             subtext="Registered in system"
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid size={4} sm={6} md={3}>
           <StatCard
             title="Active Mentors"
             value="98"
@@ -38,7 +40,7 @@ const MentorNetwork = () => {
             trend="up"
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid size={4} sm={6} md={3}>
           <StatCard
             title="Inactive Mentors"
             value="52"
@@ -47,7 +49,7 @@ const MentorNetwork = () => {
             subtext="Available for assignment"
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid size={4} sm={6} md={3}>
           <StatCard
             title="Avg. Engagement Score"
             value="4.8/5"
@@ -61,17 +63,17 @@ const MentorNetwork = () => {
 
       {/* Charts Section */}
       <Grid container spacing={3} sx={{ mb: 4 }}>
-        <Grid item xs={12} md={6}>
+        <Grid size={12} md={6}>
           <ExpertiseChart />
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid size={12} md={6}>
           <EngagementChart />
         </Grid>
       </Grid>
 
       {/* Table Section */}
       <Grid container spacing={3}>
-        <Grid item xs={12}>
+        <Grid size={12}>
           <MentorTable />
         </Grid>
       </Grid>

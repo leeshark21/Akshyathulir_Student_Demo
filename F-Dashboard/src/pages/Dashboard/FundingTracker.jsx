@@ -1,5 +1,7 @@
 import React from 'react';
-import { Grid, Typography, Box } from '@mui/material';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 import AccountBalanceWalletIcon from '@mui/icons-material/AccountBalanceWallet';
 import PriceCheckIcon from '@mui/icons-material/PriceCheck';
 import SavingsIcon from '@mui/icons-material/Savings';
@@ -20,7 +22,7 @@ const FundingTracker = () => {
 
       {/* KPI Cards */}
       <Grid container spacing={3} sx={{ mb: 4 }}>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid size={4} sm={6} md={3}>
           <StatCard
             title="Total Allocated"
             value="$18.5M"
@@ -29,7 +31,7 @@ const FundingTracker = () => {
             subtext="FY 2025-26"
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid size={4} sm={6} md={3}>
           <StatCard
             title="Total Utilized"
             value="$8.2M"
@@ -39,7 +41,7 @@ const FundingTracker = () => {
             trend="up"
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid size={4} sm={6} md={3}>
           <StatCard
             title="Remaining Funds"
             value="$10.3M"
@@ -48,7 +50,7 @@ const FundingTracker = () => {
             subtext="Available for disbursement"
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid size={4} sm={6} md={3}>
           <StatCard
             title="Avg. Utilization"
             value="68%"
@@ -61,20 +63,20 @@ const FundingTracker = () => {
 
       {/* Charts Section 1 */}
       <Grid container spacing={3} sx={{ mb: 4 }}>
-        <Grid item xs={12} md={4}>
+        <Grid size={12} md={4}>
           <FundingStageChart />
         </Grid>
-        <Grid item xs={12} md={8}>
+        <Grid size={12} md={8}>
           <BurnRateChart />
         </Grid>
       </Grid>
       
        {/* Charts Section 2 - Mixed with Progress */}
       <Grid container spacing={3} sx={{ mb: 4 }}>
-        <Grid item xs={12} md={5}>
+        <Grid size={12} md={5}>
           <UtilizationProgress />
         </Grid>
-        <Grid item xs={12} md={7}>
+        <Grid size={12} md={7}>
           {/* We could reuse or add another chart here, but table is next. 
               Let's put the table in this slot? No, table should be full width maybe?
               Let's make Table Full Width next row.
@@ -89,7 +91,7 @@ const FundingTracker = () => {
 
       {/* Table Section */}
       <Grid container spacing={3}>
-        <Grid item xs={12}>
+        <Grid size={12}>
           <FundingTable />
         </Grid>
       </Grid>

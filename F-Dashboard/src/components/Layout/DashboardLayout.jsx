@@ -1,9 +1,12 @@
 import React from 'react';
-import { Box, Toolbar } from '@mui/material';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
 import Sidebar from './Sidebar';
 import Topbar from './Topbar';
+import { Outlet } from 'react-router-dom';
 
-const DashboardLayout = ({ children }) => {
+
+const DashboardLayout = () => {
   return (
     <Box sx={{ display: 'flex' }}>
       <Topbar />
@@ -18,7 +21,7 @@ const DashboardLayout = ({ children }) => {
         }}
       >
         <Toolbar /> {/* Spacer for fixed AppBar */}
-        {children}
+          <Outlet /> 
       </Box>
     </Box>
   );

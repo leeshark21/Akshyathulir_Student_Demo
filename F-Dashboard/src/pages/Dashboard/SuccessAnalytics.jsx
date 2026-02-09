@@ -1,5 +1,7 @@
 import React from 'react';
-import { Grid, Typography, Box } from '@mui/material';
+import Grid from '@mui/material/Grid';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import RocketLaunchIcon from '@mui/icons-material/RocketLaunch';
@@ -20,7 +22,7 @@ const SuccessAnalytics = () => {
 
       {/* KPI Cards */}
       <Grid container spacing={3} sx={{ mb: 4 }}>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid size={4} sm={6} md={3}>
           <StatCard
             title="Success Ratio"
             value="38%"
@@ -30,7 +32,7 @@ const SuccessAnalytics = () => {
             trend="up"
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid size={4} sm={6} md={3}>
           <StatCard
             title="Revenue Contribution"
             value="$15.2M"
@@ -40,7 +42,7 @@ const SuccessAnalytics = () => {
             trend="up"
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid size={4} sm={6} md={3}>
           <StatCard
             title="Scale-up Startups"
             value="39"
@@ -50,7 +52,7 @@ const SuccessAnalytics = () => {
             trend="up"
           />
         </Grid>
-        <Grid item xs={12} sm={6} md={3}>
+        <Grid size={4} sm={6} md={3}>
           <StatCard
             title="Successful Exits"
             value="15"
@@ -63,20 +65,20 @@ const SuccessAnalytics = () => {
 
       {/* Charts Section */}
       <Grid container spacing={3} sx={{ mb: 4 }}>
-        <Grid item xs={12} md={4}>
+        <Grid size={4} md={4}>
           <SuccessRatioChart />
         </Grid>
-        <Grid item xs={12} md={5}>
+        <Grid size={12} md={5}>
           <RevenueGrowthChart />
         </Grid>
-        <Grid item xs={12} md={3}>
+        <Grid size={12} md={3}>
           <ExitStats />
         </Grid>
       </Grid>
 
       {/* Table Section */}
       <Grid container spacing={3}>
-        <Grid item xs={12}>
+        <Grid size={12}>
           <SuccessTable />
         </Grid>
       </Grid>

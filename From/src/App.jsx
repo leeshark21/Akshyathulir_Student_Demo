@@ -1,10 +1,15 @@
 import React from 'react'
-import FromPage from './Pages/FromPage'
+import PageBelow from './Pages/PageBelow'
+import { Routes, Route } from 'react-router-dom'
+import ReviewPage from './Pages/Pages1/ReviewPage'
 
 const App = () => {
   return (
     <>
-    <FromPage/>
+    <Routes>
+      <Route path='/' element={<PageBelow/>}/>
+      <Route path='/review' element={<ReviewPage/>}/>
+    </Routes>
       
     </>
   )
