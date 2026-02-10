@@ -26,6 +26,7 @@ function App() {
 
           {/* Dashboard layout routes */}
           <Route element={<DashboardLayout />}>
+            <Route path="/" element={<Overview />} />
             <Route path="/dashboard" element={<Overview />} />
             <Route path="/review" element={<PageBelow />} />
             <Route path="/reviewpage" element={<ReviewPage />} />
