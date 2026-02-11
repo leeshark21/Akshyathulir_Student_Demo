@@ -1,49 +1,53 @@
-import React, { useState } from 'react';
-import {
-  Card,
-  CardContent,
-  Typography,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Chip,
-  TextField,
-  InputAdornment,
-  Box,
-  IconButton
-} from '@mui/material';
+import React, { useContext, useEffect, useState } from 'react';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Chip from '@mui/material/Chip';
+import TextField from '@mui/material/TextField';
+import InputAdornment from '@mui/material/InputAdornment';
+import Box from '@mui/material/Box';
+import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import FilterListIcon from '@mui/icons-material/FilterList';
+import { MentorContext } from './context/mentorContext';
 
-const createData = (name, expertise, startups, sessions, status, availability) => {
-  return { name, expertise, startups, sessions, status, availability };
-};
 
-const rows = [
-  createData('Dr. Sarah Chen', 'Tech & AI', 3, 12, 'High', 'Active'),
-  createData('Michael Ross', 'Business Strategy', 2, 8, 'Medium', 'Active'),
-  createData('Jessica Pearson', 'Legal', 1, 4, 'Low', 'On Hold'),
-  createData('David Kim', 'Marketing', 4, 15, 'High', 'Active'),
-  createData('Amanda Low', 'Finance', 2, 6, 'Medium', 'Active'),
-];
+
+
+// const createData = (name, expertise, startups, sessions, status, availability) => {
+//   return { name, expertise, startups, sessions, status, availability };
+// };
+
+
 
 const MentorTable = () => {
+  const {mentor} = useContext(MentorContext)
+
   const [searchTerm, setSearchTerm] = useState('');
 
-  const filteredRows = rows.filter((row) =>
+
+  const filteredRows = mentor.filter((row) =>
     row.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     row.expertise.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+
   const getStatusColor = (status) => {
     switch (status) {
-      case 'High': return 'success';
-      case 'Medium': return 'warning';
-      case 'Low': return 'error';
-      default: return 'default';
+      case 'High': 
+       return 'success';
+      case 'Medium': 
+       return 'warning';
+      case 'Low': 
+       return 'error';
+      default: 
+       return 'default';
     }
   };
 
@@ -96,7 +100,7 @@ const MentorTable = () => {
                     {row.name}
                   </TableCell>
                   <TableCell>{row.expertise}</TableCell>
-                  <TableCell align="center">{row.startups}</TableCell>
+                  <TableCell align="center">{row.startupsAssigned}</TableCell>
                   <TableCell align="center">{row.sessions}</TableCell>
                   <TableCell align="center">
                     <Chip label={row.status} color={getStatusColor(row.status)} size="small" variant="outlined" />

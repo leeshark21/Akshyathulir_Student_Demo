@@ -10,8 +10,4 @@ client = MongoClient(MONGO_URI, server_api=ServerApi('1'))
 db = client["incubation_db"]
 
 support_collection = db["suppoert_request"]
-
-
-db2 = client["Mento"]
-
-Mentor_collection=db2["Mentor_Network"]
+Mentor_collection=db["Mentor_Network"]

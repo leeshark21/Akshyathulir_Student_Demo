@@ -1,6 +1,8 @@
 from fastapi import FastAPI
 from routers.Routerapplication import router
 from fastapi.middleware.cors import CORSMiddleware
+from database import Mentor_collection
+
 
 
 
@@ -23,4 +25,5 @@ app.add_middleware(
 
     
 )
+
 
