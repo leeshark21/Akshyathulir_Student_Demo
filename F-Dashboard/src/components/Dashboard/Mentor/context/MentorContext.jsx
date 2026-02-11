@@ -5,6 +5,8 @@ export const MentorContext = createContext(null);
 
 export const MentorProvider = ({ children }) => {
 
+  const [expterisestats, SetExpterisestats] = useState([])
+
   const [mentor, setMentor] = useState([]);
 
   const [stats, SetStats] = useState();
@@ -25,7 +27,7 @@ export const MentorProvider = ({ children }) => {
 
 
 
-      
+
     } catch (error) {
       console.error("API error", error);
     }
@@ -84,12 +86,42 @@ export const MentorProvider = ({ children }) => {
     const AverageEngagement = totalMentor > 0 ? TotalEngagement / totalMentor : 0;
 
 
-     const expertiseMap =()=>{
-      
-     }
+    const CalexpertiseMap = (data) => {
+      let expertise = {}
+      for (let i = 0; i < data.length; i++) {
+        let exp = data[i].expertise;
+
+        if (expertise[exp]) {
+          expertise[exp] += 1
+
+        } else {
+          expertise[exp] = 1
+        }
+      }
 
 
-   
+      const Format = []
+
+      for (let key in expertise) {
+        Format.push({
+          name: key,
+          value: expertise[key]
+
+
+        }
+
+        )
+      }
+
+      SetExpterisestats(Format)
+
+    }
+
+    CalexpertiseMap(data)
+
+
+
+
 
     SetStats({
       totalMentor,
@@ -104,7 +136,7 @@ export const MentorProvider = ({ children }) => {
 
 
   return (
-    <MentorContext.Provider value={{ mentor, stats }}>
+    <MentorContext.Provider value={{ mentor, stats, expterisestats }}>
       {children}
     </MentorContext.Provider>
   );
