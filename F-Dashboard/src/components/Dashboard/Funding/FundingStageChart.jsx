@@ -1,18 +1,36 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { Card, CardContent, Typography, Box } from '@mui/material';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import { FundingProvider } from './FundingContext/FundingContex';
+// const data = [
+//   { name: 'Idea Stage', value: 15 },
+//   { name: 'Pre-Seed', value: 25 },
+//   { name: 'Seed', value: 35 },
+//   { name: 'Series A', value: 20 },
+//   { name: 'Series B', value: 5 },
+// ];
 
-const data = [
-  { name: 'Idea Stage', value: 15 },
-  { name: 'Pre-Seed', value: 25 },
-  { name: 'Seed', value: 35 },
-  { name: 'Series A', value: 20 },
-  { name: 'Series B', value: 5 },
-];
 
-const COLORS = ['#A5D6A7', '#81C784', '#66BB6A', '#4CAF7A', '#1E4A28'];
 
 const FundingStageChart = () => {
+  const {fundtable} = useContext(FundingProvider);
+
+  const stageCount = fundtable.reduce((acc,curr)=>{
+    acc[curr.stage] = (acc[curr.stage]||0)+1;
+
+    return acc;
+
+  },{});
+
+  const ChartData1 = Object.keys(stageCount).map(stage=>({
+    name:stage,
+    value:stageCount[stage]
+  }))
+
+  const COLORS = ['#A5D6A7', '#81C784', '#66BB6A', '#4CAF7A', '#1E4A28'];
   return (
     <Card sx={{ height: '100%' }}>
       <CardContent>
@@ -23,7 +41,7 @@ const FundingStageChart = () => {
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
-                data={data}
+                data={ChartData1}
                 cx="50%"
                 cy="50%"
                 innerRadius={60}
@@ -33,7 +51,7 @@ const FundingStageChart = () => {
                 dataKey="value"
                 label
               >
-                {data.map((entry, index) => (
+                {ChartData1.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                 ))}
               </Pie>

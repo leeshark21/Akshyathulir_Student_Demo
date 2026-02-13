@@ -13,8 +13,12 @@ import SurvivalRateChart from '../../components/Dashboard/Program/SurvivalRateCh
 import BenchmarkRadarChart from '../../components/Dashboard/Program/BenchmarkRadarChart';
 import CohortComparisonChart from '../../components/Dashboard/Program/CohortComparisonChart';
 import ProgramTable from '../../components/Dashboard/Program/ProgramTable';
+import { useContext } from 'react';
+import { Programcontextcreate } from '../../components/Dashboard/Program/ProgramContex/ProgramContext';
+import CountUp from '../../CountUp/Countup';
 
 const ProgramEffectiveness = () => {
+  const {program} =useContext(Programcontextcreate)
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Typography variant="h4" gutterBottom sx={{ mb: 4, color: '#1E4A28', fontWeight: 'bold' }}>
@@ -26,7 +30,7 @@ const ProgramEffectiveness = () => {
         <Grid size={4} sm={6} md={3}>
           <StatCard
             title="Avg. Completion Rate"
-            value="89%"
+            value={<CountUp end={program?.AvgcompletionRate||0}/>}
             icon={<AssignmentTurnedInIcon fontSize="large" />}
             color="#1E4A28"
             subtext="+5% vs last cohort"
@@ -36,7 +40,7 @@ const ProgramEffectiveness = () => {
         <Grid size={4} sm={6} md={3}>
           <StatCard
             title="Startup Survival Rate"
-            value="92%"
+            value={<CountUp end={program?.StartupsurvivalRate||0} />}
             icon={<TrendingUpIcon fontSize="large" />}
             color="#4CAF7A"
             subtext="After 12 months"
@@ -46,7 +50,7 @@ const ProgramEffectiveness = () => {
         <Grid size={4} sm={6} md={3}>
           <StatCard
             title="Overall KPI Score"
-            value="4.7/5"
+            value={<CountUp end={program?.OverallKPIScore||0} />}
             icon={<ScoreIcon fontSize="large" />}
             color="#1565C0"
             subtext="Above benchmarks"
@@ -56,7 +60,7 @@ const ProgramEffectiveness = () => {
         <Grid size={4} sm={6} md={3}>
           <StatCard
             title="High Performers"
-            value="18"
+            value={<CountUp end={program?.HigherPerformers||0} />}
             icon={<StarIcon fontSize="large" />}
             color="#FFC107"
             subtext="Exceeding all targets"

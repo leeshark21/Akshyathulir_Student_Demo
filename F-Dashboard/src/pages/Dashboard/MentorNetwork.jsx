@@ -59,7 +59,7 @@ const MentorNetwork = () => {
         <Grid size={4} sm={6} md={3}>
           <StatCard
             title="Avg. Engagement Score"
-             value={<CountUp end={stats?.TotalEngagement || 0} />}
+             value={<CountUp end={Number(stats?.TotalEngagement || 0)} />}
             icon={<StarIcon fontSize="large" />}
             color="#FFC107"
             subtext="Based on feedback"

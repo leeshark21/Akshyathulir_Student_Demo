@@ -11,6 +11,8 @@ export const MentorProvider = ({ children }) => {
 
   const [stats, SetStats] = useState();
 
+  const [engagestats,SetEngagestats] = useState([])
+
   useEffect(() => {
     fetchMentor();
   }, []);
@@ -117,7 +119,24 @@ export const MentorProvider = ({ children }) => {
 
     }
 
+
+
+
     CalexpertiseMap(data)
+
+
+   let sessiondata=[]
+
+   for(let i=0;i<data.length;i++){
+     sessiondata.push({
+      name:data[i].name,
+      sessions:Number(data[i].sessions)
+     }
+
+     )
+   }
+
+   SetEngagestats(sessiondata)
 
 
 
@@ -127,7 +146,7 @@ export const MentorProvider = ({ children }) => {
       totalMentor,
       activeMember,
       inactiveMember,
-      AverageEngagement
+      AverageEngagement:0
     })
 
 
@@ -136,7 +155,7 @@ export const MentorProvider = ({ children }) => {
 
 
   return (
-    <MentorContext.Provider value={{ mentor, stats, expterisestats }}>
+    <MentorContext.Provider value={{ mentor, stats, expterisestats ,engagestats }}>
       {children}
     </MentorContext.Provider>
   );

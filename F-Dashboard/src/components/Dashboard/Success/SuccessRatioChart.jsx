@@ -1,7 +1,9 @@
 import React from 'react';
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { Card, CardContent, Typography, Box } from '@mui/material';
-
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
 const data = [
   { name: 'Revenue Generating', value: 45 },
   { name: 'Funding Secured', value: 30 },
@@ -18,7 +20,7 @@ const SuccessRatioChart = () => {
         <Typography variant="h6" gutterBottom color="primary.main">
           Startup Success Distribution
         </Typography>
-        <Box sx={{ height: 300 }}>
+        <Box sx={{ height: 300 , width:'100%' }}>
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie

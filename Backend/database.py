@@ -11,3 +11,6 @@ db = client["incubation_db"]
 
 support_collection = db["suppoert_request"]
 Mentor_collection=db["Mentor_Network"]
+Program_collection=db["Program_Effectiveness"]
+Funding_Tracker =db["Funding_Tracker"]
+success_outcomes=db["success_outcomes"]

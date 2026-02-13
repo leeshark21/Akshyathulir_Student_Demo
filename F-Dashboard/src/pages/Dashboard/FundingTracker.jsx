@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import Grid from '@mui/material/Grid';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
@@ -12,53 +12,106 @@ import FundingStageChart from '../../components/Dashboard/Funding/FundingStageCh
 import BurnRateChart from '../../components/Dashboard/Funding/BurnRateChart';
 import UtilizationProgress from '../../components/Dashboard/Funding/UtilizationProgress';
 import FundingTable from '../../components/Dashboard/Funding/FundingTable';
+import CountUp from '../../CountUp/Countup';
+
+import { FundingProvider } from '../../components/Dashboard/Funding/FundingContext/FundingContex';
 
 const FundingTracker = () => {
+
+  const { fundtable } = useContext(FundingProvider);
+
+  // ✅ Safe reduce
+  const totalAllocated =
+    fundtable?.reduce((sum, item) => sum + item.allocated, 0) || 0;
+
+  const totalUtilized =
+    fundtable?.reduce((sum, item) => sum + item.utilized, 0) || 0;
+
+  const totalRemaining =
+    fundtable?.reduce((sum, item) => sum + item.remaining, 0) || 0;
+
+  const avgUtilization =
+    totalAllocated > 0
+      ? Math.round((totalUtilized / totalAllocated) * 100)
+      : 0;
+
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <Typography variant="h4" gutterBottom sx={{ mb: 4, color: '#1E4A28', fontWeight: 'bold' }}>
+      <Typography
+        variant="h4"
+        gutterBottom
+        sx={{ mb: 4, color: '#1E4A28', fontWeight: 'bold' }}
+      >
         Funding Utilization Tracker
       </Typography>
 
       {/* KPI Cards */}
       <Grid container spacing={3} sx={{ mb: 4 }}>
+
         <Grid size={4} sm={6} md={3}>
           <StatCard
             title="Total Allocated"
-            value="$18.5M"
+            value={
+              <CountUp
+                end={totalAllocated}
+                prefix="₹"
+                isCurrency={true}
+              />
+            }
             icon={<AccountBalanceWalletIcon fontSize="large" />}
             color="#1E4A28"
             subtext="FY 2025-26"
           />
         </Grid>
+
         <Grid size={4} sm={6} md={3}>
           <StatCard
             title="Total Utilized"
-            value="$8.2M"
+            value={
+              <CountUp
+                end={totalUtilized}
+                prefix="₹"
+                isCurrency={true}
+              />
+            }
             icon={<PriceCheckIcon fontSize="large" />}
             color="#4CAF7A"
-            subtext="44% of budget"
+            subtext={`${avgUtilization}% of budget`}
             trend="up"
           />
         </Grid>
+
         <Grid size={4} sm={6} md={3}>
           <StatCard
             title="Remaining Funds"
-            value="$10.3M"
+            value={
+              <CountUp
+                end={totalRemaining}
+                prefix="₹"
+                isCurrency={true}
+              />
+            }
             icon={<SavingsIcon fontSize="large" />}
             color="#1565C0"
             subtext="Available for disbursement"
           />
         </Grid>
+
         <Grid size={4} sm={6} md={3}>
           <StatCard
             title="Avg. Utilization"
-            value="68%"
+            value={
+              <CountUp
+                end={avgUtilization}
+                suffix="%"
+              />
+            }
             icon={<PieChartIcon fontSize="large" />}
             color="#FFC107"
             subtext="Per startup"
           />
         </Grid>
+
       </Grid>
 
       {/* Charts Section 1 */}
@@ -70,22 +123,30 @@ const FundingTracker = () => {
           <BurnRateChart />
         </Grid>
       </Grid>
-      
-       {/* Charts Section 2 - Mixed with Progress */}
+
+      {/* Charts Section 2 */}
       <Grid container spacing={3} sx={{ mb: 4 }}>
         <Grid size={12} md={5}>
           <UtilizationProgress />
         </Grid>
+
         <Grid size={12} md={7}>
-          {/* We could reuse or add another chart here, but table is next. 
-              Let's put the table in this slot? No, table should be full width maybe?
-              Let's make Table Full Width next row.
-              Actually let's just leave this empty or stretch the progress?
-              Let's just use 12 columns for Table.
-           */}
-           <Box sx={{ height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', bgcolor: '#e0f2f1', borderRadius: 2, border: '1px dashed #1E4A28', color: '#1E4A28' }}>
-              <Typography variant="h6">Comparison Widget / Future Expansion</Typography>
-           </Box>
+          <Box
+            sx={{
+              height: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              bgcolor: '#e0f2f1',
+              borderRadius: 2,
+              border: '1px dashed #1E4A28',
+              color: '#1E4A28'
+            }}
+          >
+            <Typography variant="h6">
+              Comparison Widget / Future Expansion
+            </Typography>
+          </Box>
         </Grid>
       </Grid>
 
@@ -95,6 +156,7 @@ const FundingTracker = () => {
           <FundingTable />
         </Grid>
       </Grid>
+
     </Box>
   );
 };

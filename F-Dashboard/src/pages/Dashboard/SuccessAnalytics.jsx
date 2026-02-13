@@ -65,7 +65,7 @@ const SuccessAnalytics = () => {
 
       {/* Charts Section */}
       <Grid container spacing={3} sx={{ mb: 4 }}>
-        <Grid size={4} md={4}>
+        <Grid size={12} md={4}>
           <SuccessRatioChart />
         </Grid>
         <Grid size={12} md={5}>

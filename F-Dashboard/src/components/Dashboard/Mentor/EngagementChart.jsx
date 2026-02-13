@@ -1,15 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { Card, CardContent, Typography, Box } from '@mui/material';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import { MentorContext } from './context/mentorContext';
 
-const data = [
-  { name: 'Week 1', Sessions: 12 },
-  { name: 'Week 2', Sessions: 19 },
-  { name: 'Week 3', Sessions: 15 },
-  { name: 'Week 4', Sessions: 22 },
-];
 
 const EngagementChart = () => {
+  const {engagestats} = useContext(MentorContext)
   return (
     <Card sx={{ height: '100%' }}>
       <CardContent>
@@ -19,7 +18,7 @@ const EngagementChart = () => {
         <Box sx={{ height: 300 }}>
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
-              data={data}
+              data={engagestats}
               margin={{
                 top: 5,
                 right: 30,
@@ -32,7 +31,7 @@ const EngagementChart = () => {
               <YAxis />
               <Tooltip cursor={{fill: 'transparent'}} />
               <Legend />
-              <Bar dataKey="Sessions" fill="#1E4A28" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="sessions" fill="#1E4A28" radius={[4, 4, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </Box>

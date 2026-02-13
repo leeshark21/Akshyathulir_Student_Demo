@@ -1,15 +1,28 @@
-import React from 'react';
-import { Card, CardContent, Typography, Box, LinearProgress } from '@mui/material';
 
-const programs = [
-  { name: 'DeepTech 2024', utilized: 85, color: 'success' },
-  { name: 'Agri Innovation', utilized: 60, color: 'primary' },
-  { name: 'Fintech Accelerator', utilized: 45, color: 'info' },
-  { name: 'Women Founders', utilized: 92, color: 'warning' },
-  { name: 'Student Grant', utilized: 20, color: 'secondary' },
-];
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import LinearProgress from '@mui/material/LinearProgress';
+import { useContext } from 'react';
+import  { FundingProvider } from './FundingContext/FundingContex';
+
 
 const UtilizationProgress = () => {
+
+  const {fundtable} = useContext(FundingProvider);
+
+  const getColor =(percent)=>{
+
+    if (percent >= 90) return "warning"
+    if (percent >= 70) return "success"
+    if (percent >= 40) return "info"
+
+    return "secondary" ;
+
+  }
+
+  
   return (
     <Card sx={{ height: '100%' }}>
       <CardContent>
@@ -17,11 +30,15 @@ const UtilizationProgress = () => {
           Budget Utilization by Program
         </Typography>
         <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3, mt: 2 }}>
-          {programs.map((prog) => (
-            <Box key={prog.name} sx={{ width: '100%' }}>
+          {fundtable.map((prog) => {
+            const percentage = Math.round(
+              (prog.utilized / prog.allocated) *100
+            )
+          return (
+            <Box key={prog.startupName} sx={{ width: '100%' }}>
               <Box sx={{ display: 'flex', justifyContent: 'space-between', mb: 1 }}>
                 <Typography variant="body2" fontWeight="bold">
-                  {prog.name}
+                  {prog.startupName}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
                   {prog.utilized}%
@@ -29,12 +46,12 @@ const UtilizationProgress = () => {
               </Box>
               <LinearProgress 
                 variant="determinate" 
-                value={prog.utilized} 
-                color={prog.color} 
+                value={percentage} 
+                color={getColor(percentage)} 
                 sx={{ height: 10, borderRadius: 5 }}
               />
             </Box>
-          ))}
+          )})}
         </Box>
       </CardContent>
     </Card>

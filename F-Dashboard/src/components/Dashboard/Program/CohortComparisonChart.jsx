@@ -1,25 +1,35 @@
-import React from 'react';
+import React, { useContext, useMemo } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { Card, CardContent, Typography, Box } from '@mui/material';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import { Programcontextcreate } from './ProgramContex/ProgramContext';
 
-const data = [
-  { name: 'Cohort 1', Revenue: 4000, Funding: 2400, amt: 2400 },
-  { name: 'Cohort 2', Revenue: 3000, Funding: 1398, amt: 2210 },
-  { name: 'Cohort 3', Revenue: 2000, Funding: 9800, amt: 2290 },
-  { name: 'Cohort 4', Revenue: 2780, Funding: 3908, amt: 2000 },
-];
 
 const CohortComparisonChart = () => {
+      const {table} = useContext(Programcontextcreate);
+
+      const chartdata = useMemo(()=>{
+        if(!table || table.length === 0) return [];
+
+        return table.map(item =>({
+          name:`Cohort ${item.cohortYear}`,
+          survivalRate:item.survivalRate,
+          CompletionRate: item.completionRate
+        }))
+      })
+
   return (
     <Card sx={{ height: '100%' }}>
       <CardContent>
         <Typography variant="h6" gutterBottom color="primary.main">
-          Cohort Comparison (Revenue vs Funding)
+          Cohort Comparison  (Survival vs Completion)
         </Typography>
         <Box sx={{ height: 300 }}>
           <ResponsiveContainer width="100%" height="100%">
             <BarChart
-              data={data}
+              data={chartdata}
               margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
             >
               <CartesianGrid strokeDasharray="3 3" vertical={false} />
@@ -27,8 +37,8 @@ const CohortComparisonChart = () => {
               <YAxis />
               <Tooltip />
               <Legend />
-              <Bar dataKey="Revenue" fill="#1E4A28" />
-              <Bar dataKey="Funding" fill="#4CAF7A" />
+              <Bar dataKey="survivalRate" fill="#1E4A28" />
+              <Bar dataKey="CompletionRate" fill="#4CAF7A" />
             </BarChart>
           </ResponsiveContainer>
         </Box>

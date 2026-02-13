@@ -1,24 +1,15 @@
-import React from 'react';
-import {
-  Card,
-  CardContent,
-  Typography,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableHead,
-  TableRow,
-  Chip
-} from '@mui/material';
-
-const rows = [
-  { name: 'Summer Acceleration 2024', cohort: '2024', completion: '92%', survival: '98%', score: '4.8', status: 'Excellent' },
-  { name: 'Winter Incubation 2023', cohort: '2023', completion: '85%', survival: '90%', score: '4.5', status: 'Good' },
-  { name: 'Pre-Incubation 2023', cohort: '2023', completion: '78%', survival: '82%', score: '4.0', status: 'Average' },
-  { name: 'DeepTech Scaleup 2022', cohort: '2022', completion: '95%', survival: '94%', score: '4.9', status: 'Excellent' },
-];
-
+import React, { useContext } from 'react';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Chip from '@mui/material/Chip';
+import { Programcontextcreate } from './ProgramContex/ProgramContext';
 const getStatusColor = (status) => {
   switch (status) {
     case 'Excellent': return 'success';
@@ -29,6 +20,7 @@ const getStatusColor = (status) => {
 };
 
 const ProgramTable = () => {
+   const {table} =useContext(Programcontextcreate)
   return (
     <Card>
       <CardContent>
@@ -48,15 +40,15 @@ const ProgramTable = () => {
               </TableRow>
             </TableHead>
             <TableBody>
-              {rows.map((row) => (
-                <TableRow key={row.name}>
+              {table.map((row,index) => (
+                <TableRow key={index}>
                   <TableCell component="th" scope="row" sx={{ fontWeight: 500 }}>
-                    {row.name}
+                    {row.programName}
                   </TableCell>
-                  <TableCell align="center">{row.cohort}</TableCell>
-                  <TableCell align="center" sx={{ fontWeight: 'bold', color: 'primary.main' }}>{row.completion}</TableCell>
-                  <TableCell align="center">{row.survival}</TableCell>
-                  <TableCell align="center">{row.score}</TableCell>
+                  <TableCell align="center">{row.cohortYear}</TableCell>
+                  <TableCell align="center" sx={{ fontWeight: 'bold', color: 'primary.main' }}>{row.completionRate}</TableCell>
+                  <TableCell align="center">{row.survivalRate}</TableCell>
+                  <TableCell align="center">{row.kpiScore}</TableCell>
                   <TableCell align="center">
                     <Chip label={row.status} color={getStatusColor(row.status)} size="small" />
                   </TableCell>

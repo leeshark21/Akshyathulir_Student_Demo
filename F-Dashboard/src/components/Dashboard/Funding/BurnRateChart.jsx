@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Legend } from 'recharts';
-import { Card, CardContent, Typography, Box } from '@mui/material';
-
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import { FundingProvider } from './FundingContext/FundingContex';
 const data = [
   { month: 'Jan', Burn: 120 },
   { month: 'Feb', Burn: 132 },
@@ -13,20 +16,28 @@ const data = [
 ];
 
 const BurnRateChart = () => {
+
+  const {fundtable} =useContext(FundingProvider);
+
+  const ChartData = fundtable.map(item=>({
+    Name: item.startupName,
+    Burn:item.utilized/1000
+  }));
+  
   return (
     <Card sx={{ height: '100%' }}>
       <CardContent>
         <Typography variant="h6" gutterBottom color="primary.main">
-          Monthly Burn Rate ($K)
+           Startup Burn Rate ($K)
         </Typography>
         <Box sx={{ height: 300 }}>
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart
-              data={data}
+              data={ChartData}
               margin={{ top: 10, right: 30, left: 0, bottom: 0 }}
             >
               <CartesianGrid strokeDasharray="3 3" vertical={false} />
-              <XAxis dataKey="month" />
+              <XAxis dataKey="Name" />
               <YAxis />
               <Tooltip />
               <Legend />

@@ -1,13 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { RadialBarChart, RadialBar, Legend, ResponsiveContainer, Tooltip } from 'recharts';
-import { Card, CardContent, Typography, Box } from '@mui/material';
-
-const data = [
-  { name: 'Enrolled', uv: 100, fill: '#E8F5E9' }, // Background track
-  { name: 'Completed', uv: 85, fill: '#1E4A28' },
-  { name: 'Dropouts', uv: 15, fill: '#f44336' },
-];
-
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import { Programcontextcreate } from './ProgramContex/ProgramContext';
 const style = {
   top: '50%',
   right: 0,
@@ -16,6 +13,19 @@ const style = {
 };
 
 const CompletionRateChart = () => {
+
+  const {program} =useContext(Programcontextcreate)
+  
+  const Completed = Number(program?.AvgcompletionRate ||0)
+  const Dropouts =100-Completed
+
+
+  const data = [
+  { name: 'Enrolled', uv: 100, fill: '#E8F5E9' }, // Background track
+  { name: 'Completed', uv: Completed, fill: '#1E4A28' },
+  { name: 'Dropouts', uv: Dropouts, fill: '#f44336' },
+];
+
   return (
     <Card sx={{ height: '100%' }}>
       <CardContent>
