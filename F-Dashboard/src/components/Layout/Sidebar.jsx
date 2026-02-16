@@ -16,12 +16,13 @@ import SchoolIcon from '@mui/icons-material/School';
 import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import TrendingUpIcon from '@mui/icons-material/TrendingUp';
 import SettingsIcon from '@mui/icons-material/Settings';
+import PersonIcon from '@mui/icons-material/Person';
 
 const drawerWidth = 260;
 
 const menuItems = [
   { text: 'Dashboard Overview', icon: <DashboardIcon />, path: '/dashboard' },
-  { text: 'Profile', icon: <PeopleIcon />, path: '/review' },
+  { text: 'Profile', icon: <PersonIcon />, path: '/review' },
  
   { text: 'Mentor Network', icon: <PeopleIcon />, path: '/mentors' },
   { text: 'Program Effectiveness', icon: <SchoolIcon />, path: '/program' },

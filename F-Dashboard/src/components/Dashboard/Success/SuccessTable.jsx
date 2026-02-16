@@ -10,13 +10,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Chip from '@mui/material/Chip';
 import { SuccessCreate } from './SuccessContex/SucessContext';
-// const rows = [
-//   { name: 'MediCare Plus', cohort: '2021', revenue: '+250%', funding: '$4.5M', status: 'Scale-up', exit: 'Pending' },
-//   { name: 'AgriSense', cohort: '2022', revenue: '+120%', funding: '$1.2M', status: 'Growth', exit: 'N/A' },
-//   { name: 'FinTech Solutions', cohort: '2020', revenue: '+500%', funding: '$12M', status: 'Exited', exit: 'Acquired' },
-//   { name: 'EduLearn', cohort: '2023', revenue: '+80%', funding: '$500K', status: 'Early Growth', exit: 'N/A' },
-//   { name: 'CyberSafe', cohort: '2021', revenue: '+300%', funding: '$8M', status: 'Scale-up', exit: 'IPO Prep' },
-// ];
+
 
 
 

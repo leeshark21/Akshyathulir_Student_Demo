@@ -20,7 +20,7 @@ export const MentorProvider = ({ children }) => {
   const fetchMentor = async () => {
 
     try {
-      const res = await axios.get("http://127.0.0.1:8000/mentors");
+      const res = await axios.get("http://127.0.0.1:8000/mentor");
 
       const unqiueMentor = calDuplicate(res.data)
       setMentor(unqiueMentor);

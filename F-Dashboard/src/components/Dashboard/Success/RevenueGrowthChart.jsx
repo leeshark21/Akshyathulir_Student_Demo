@@ -1,18 +1,22 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-const data = [
-  { year: '2021', Revenue: 1.2 },
-  { year: '2022', Revenue: 2.5 },
-  { year: '2023', Revenue: 4.8 },
-  { year: '2024', Revenue: 8.5 },
-  { year: '2025', Revenue: 15.2 },
-];
+import { SuccessCreate } from './SuccessContex/SucessContext';
+
 
 const RevenueGrowthChart = () => {
+
+  const {success} = useContext(SuccessCreate);
+
+  const data = success.map(item=>({
+    year: item.cohort,
+    Revenue: item.revenueGrowth
+  }))
+
+   
   return (
     <Card sx={{ height: '100%' }}>
       <CardContent>

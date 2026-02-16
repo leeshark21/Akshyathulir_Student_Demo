@@ -16,7 +16,7 @@ const ProgramContext = ({ children }) => {
     const ProgramApi = async () => {
 
         try {
-            const result = await axios.get('http://127.0.0.1:8000/programs')
+            const result = await axios.get('http://127.0.0.1:8000/program')
             SetTable(result.data)
             programCalstats(result.data)
 

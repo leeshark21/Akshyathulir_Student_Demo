@@ -23,7 +23,7 @@ const PageBelow = () => {
 
 
   const [supportNeeded, setSupportNeeded] = useState({
-    industry_sectors: [],   // ✅ domains + sub-domains inside
+    industry_sectors: [],   
 
     infrastructure: [],
     business_startup_support: [],
@@ -37,13 +37,14 @@ const PageBelow = () => {
     extra_offers_incubatees: [],
   });
 
+  
   /* ---------- SUBMIT ---------- */
   const nevigate = useNavigate()
   const handleSubmit = async () => {
     console.log("Sending to backend 👉", supportNeeded);
 
     try {
-      await Api.post("/support/submit", supportNeeded);
+      await Api.post('/submit', supportNeeded);
       alert("✅ Successfully submitted");
       nevigate("/reviewpage")
 

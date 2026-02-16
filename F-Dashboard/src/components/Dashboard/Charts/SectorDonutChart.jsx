@@ -1,37 +1,40 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-import { Card, CardContent, Typography, Box } from '@mui/material';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import { MentorContext } from '../Mentor/context/MentorContext';
 
-const data = [
-  { name: 'Fintech', value: 400 },
-  { name: 'HealthTech', value: 300 },
-  { name: 'AgriTech', value: 300 },
-  { name: 'EdTech', value: 200 },
-];
 
-const COLORS = ['#1E4A28', '#4CAF7A', '#81C784', '#A5D6A7'];
+const COLORS = ['#1E4A28', '#2E7D32', '#4CAF7A', '#66BB6A', '#81C784', '#A5D6A7'];
+
+
 
 const SectorDonutChart = () => {
+
+  const {expterisestats} = useContext(MentorContext)
+
+  
   return (
     <Card sx={{ height: '100%' }}>
       <CardContent>
         <Typography variant="h6" gutterBottom color="primary.main">
-          Sector Distribution
+          Mentor Expertise Distribution
         </Typography>
-        <Box sx={{ height: 300, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <Box sx={{ height: 300 }}>
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
               <Pie
-                data={data}
+                data={expterisestats}
                 cx="50%"
                 cy="50%"
-                innerRadius={60}
                 outerRadius={80}
                 fill="#8884d8"
-                paddingAngle={5}
                 dataKey="value"
+                label
               >
-                {data.map((entry, index) => (
+                {expterisestats.map((entry, index) => (
                   <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                 ))}
               </Pie>

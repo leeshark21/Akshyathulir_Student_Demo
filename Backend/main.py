@@ -1,5 +1,11 @@
 from fastapi import FastAPI
-from routers.Routerapplication import router
+from routers.Support_router import routes as Support_router
+from routers.success_router import routers as success_router
+from routers.program_router import routers as program_router
+from routers.mentor_router import routers as mentor_router
+from routers.funding_router import routers as funding_router
+
+
 from fastapi.middleware.cors import CORSMiddleware
 
 
@@ -8,7 +14,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app=FastAPI(title='Incubation center API')
 
-app.include_router(router)
+
 
 @app.get('/')
 def root():
@@ -25,5 +31,15 @@ app.add_middleware(
 
     
 )
+
+app.include_router(Support_router)
+
+app.include_router(funding_router)
+
+app.include_router(mentor_router)
+
+app.include_router(program_router)
+
+app.include_router(success_router)
 
 

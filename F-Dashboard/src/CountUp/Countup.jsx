@@ -19,14 +19,14 @@ const CountUp = ({
       const progress = timestamp - startTime;
       const progressPercent = Math.min(progress / duration, 1);
 
-      const currentValue = progressPercent * end;
+      const currentValue = progressPercent * Number(end);
 
       setCount(currentValue);
 
       if (progress < duration) {
         frameRef.current = requestAnimationFrame(animate);
       } else {
-        setCount(end);
+        setCount(Number);
       }
     };
 

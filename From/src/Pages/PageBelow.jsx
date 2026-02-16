@@ -43,7 +43,7 @@ const PageBelow = () => {
     console.log("Sending to backend 👉", supportNeeded);
 
     try {
-      await Api.post("/support/submit", supportNeeded);
+      await Api.post("/submit", supportNeeded);
       alert("✅ Successfully submitted");
       nevigate("/review")
 
