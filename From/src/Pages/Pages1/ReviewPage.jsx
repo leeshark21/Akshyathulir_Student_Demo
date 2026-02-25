@@ -5,7 +5,7 @@ import ReviewFac from '../../Components/componets/ReviewFac'
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Api from '../Api';
-import { useNavigate } from 'react-router';
+import { useNavigate } from 'react-router-dom';
 import Button from '@mui/material/Button'
 
 
@@ -13,13 +13,20 @@ const ReviewPage = () => {
   const [reviewdata, SetReviewdata] = useState(null);
 
   const negative = useNavigate()
-  useEffect(() => {
-    Api.get('/support')
+ useEffect(() => {
+
+  const id = localStorage.getItem("supportId")
+
+  if (id) {
+    Api.get(`/support/${id}`)
       .then(res => {
-        SetReviewdata(res.data[0])
+        SetReviewdata(res.data)
       })
-      .catch(err => console.error(err));
-  }, [])
+      .catch(err => console.error(err))
+  }
+
+}, [])
+
 
   function handlechange() {
     negative('/submit',{ state: reviewdata })

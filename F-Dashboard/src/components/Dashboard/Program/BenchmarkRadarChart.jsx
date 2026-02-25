@@ -8,12 +8,9 @@ import { Programcontextcreate } from './ProgramContex/ProgramContext';
 
 
 const BenchmarkRadarChart = () => {
-
   const { program } = useContext(Programcontextcreate);
-
   const radarData = useMemo(() => {
     if (!program) return [];
-
     return [
       {
         subject: 'Completion Rate',

@@ -1,4 +1,4 @@
-import * as React from "react";
+
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import FormControl from "@mui/material/FormControl";
@@ -21,7 +21,7 @@ const MenuProps = {
   },
 };
 
-// DOMAIN LIST
+
 const DOMAINS = [
   "IT (Information Technology)",
   "Agriculture",
@@ -35,7 +35,7 @@ const DOMAINS = [
   "Other",
 ];
 
-// DOMAIN → SUBDOMAIN MAP
+
 const DOMAIN_SUBDOMAIN_MAP = {
   "IT (Information Technology)": [
     "Web Development",
@@ -102,7 +102,7 @@ const DOMAIN_SUBDOMAIN_MAP = {
 
 export default function Sector({ supportData, setSupportData }) {
 
-  // 🔹 DOMAIN MULTI SELECT CHANGE
+ 
   const handleDomainChange = (event) => {
     const selectedDomains = event.target.value;
 
@@ -121,7 +121,7 @@ export default function Sector({ supportData, setSupportData }) {
     });
   };
 
-  // 🔹 REMOVE DOMAIN (❌ CLICK)
+  
   const handleRemoveDomain = (domainToRemove) => {
     setSupportData((prev) => ({
       ...prev,
@@ -131,7 +131,7 @@ export default function Sector({ supportData, setSupportData }) {
     }));
   };
 
-  // 🔹 SUB DOMAIN CHANGE (PER DOMAIN)
+  
   const handleSubDomainChange = (domain, value) => {
     setSupportData((prev) => ({
       ...prev,
@@ -143,20 +143,20 @@ export default function Sector({ supportData, setSupportData }) {
     }));
   };
 
-  // 🔹 SELECTED DOMAINS FOR MAIN DROPDOWN
+ 
   const selectedDomains =
     supportData.industry_sectors?.map((d) => d.domain) || [];
 
   return (
     <Box sx={{ border: "2px solid #1E4A28", width: "100%" }}>
-      {/* HEADER */}
+     
       <Box sx={{ bgcolor: "#1E4A28", p: 2 }}>
         <Typography color="white" fontWeight={600}>
           Industry Sector
         </Typography>
       </Box>
 
-      {/* DOMAIN MULTI SELECT */}
+     
       <Box sx={{ p: 2 }}>
         <FormControl fullWidth>
           <InputLabel>Domain</InputLabel>

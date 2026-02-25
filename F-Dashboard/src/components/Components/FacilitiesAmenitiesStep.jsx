@@ -1,11 +1,10 @@
-import React from "react";
+
 import { useTheme } from "@mui/material/styles";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import Checkbox from "@mui/material/Checkbox";
-
 import AcUnitIcon from "@mui/icons-material/AcUnit";
 import PowerIcon from "@mui/icons-material/Power";
 import ChairIcon from "@mui/icons-material/Chair";
@@ -22,6 +21,8 @@ import InsertInvitationIcon from '@mui/icons-material/InsertInvitation';
 import FreeBreakfastIcon from '@mui/icons-material/FreeBreakfast';
 import PrintIcon from '@mui/icons-material/Print';
 
+
+
 /* ---------- Single Facility Item ---------- */
 const FacilityItem = ({ icon, label, checked, onToggle }) => {
   const theme = useTheme();
@@ -34,27 +35,19 @@ const FacilityItem = ({ icon, label, checked, onToggle }) => {
         alignItems: "center",
         p: 2,
         mb: 1.5,
-        
-        
         cursor: "pointer",
        
       }}
     >
       <Checkbox   size="small" checked={checked} sx={{ color: "#1E4A28" }} />
-     
-
       <Typography sx={{ fontSize: "0.875rem", color: "#1E4A28"  }}>
         {label}
       </Typography>
-
-      
-    </Box>
+      </Box>
   );
 };
-
-/* ---------- MAIN COMPONENT ---------- */
 const FacilitiesAmenitiesStep = ({ supportData, setSupportData }) => {
-  /* frontend → backend mapping */
+ 
   const facilityKeyMap = {
     ac: "workspace_comfort",
     power: "workspace_comfort",
@@ -77,7 +70,7 @@ const FacilitiesAmenitiesStep = ({ supportData, setSupportData }) => {
 
   };
 
-  /* ---------- Toggle handler ---------- */
+ 
   const toggleFacility = (frontendKey, label) => {
     const backendKey = facilityKeyMap[frontendKey];
 
@@ -96,8 +89,6 @@ const FacilitiesAmenitiesStep = ({ supportData, setSupportData }) => {
   return (
     <Box mt={3}>
       <Grid container spacing={3}>
-
-        {/* ---------- Amenities ---------- */}
         <Grid size={12} sx={{ border: "2px solid #1E4A28", borderRadius: 2 }}>
           <Box sx={{ bgcolor: "#1E4A28", p: 2, color: "white" }}>
             <Typography fontWeight={600}>Amenities Provider</Typography>
@@ -112,7 +103,7 @@ const FacilitiesAmenitiesStep = ({ supportData, setSupportData }) => {
             </Typography>
             <Grid container spacing={3}>
 
-              {/* Workspace */}
+       
 
 
               <Grid size={{ xs: 12, md: 4 }}>
@@ -171,7 +162,7 @@ const FacilitiesAmenitiesStep = ({ supportData, setSupportData }) => {
               </Grid>
             </Grid>
 
-            {/* Connectivity */}
+            
             <Typography fontWeight={600} mb={2} sx={{  fontWeight: 600,
         color: "#1E4A28",
         mb: 1,

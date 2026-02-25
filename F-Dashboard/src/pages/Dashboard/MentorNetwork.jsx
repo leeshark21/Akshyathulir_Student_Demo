@@ -15,17 +15,14 @@ import { MentorContext } from '../../components/Dashboard/Mentor/context/mentorC
 import CountUp from '../../CountUp/Countup';
 
 const MentorNetwork = () => {
-
   const {stats} = useContext(MentorContext);
-
-
   return (
     <Box sx={{ flexGrow: 1 }}>
       <Typography variant="h4" gutterBottom sx={{ mb: 4, color: '#1E4A28', fontWeight: 'bold' }}>
         Mentor Network Management
       </Typography>
 
-      {/* KPI Cards */}
+     
       <Grid container spacing={3} sx={{ mb: 4 }}>
         <Grid size={4} sm={6} md={3}>
           <StatCard

@@ -1,234 +1,94 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import Box from '@mui/material/Box'
 import Typography from '@mui/material/Typography'
 import axios from 'axios'
 
-
-
 const RevSupport = () => {
-  const [data, SetData] = useState([])
+
+  const [data, setData] = useState(null)
 
   useEffect(() => {
-    axios('http://127.0.0.1:8000/support')
-      .then((res) => SetData(res.data))
+
+    const supportId = localStorage.getItem("supportId")
+
+    
+
+    axios.get(`http://127.0.0.1:8000/support/${supportId}`)
+      .then((res) => {
+        console.log(res.data)
+        setData(res.data)
+      })
       .catch((err) => console.error(err))
+
   }, [])
+
+  if (!data) return <p>Loading...</p>
 
   return (
     <>
-      <Box sx={{ border: "2px solid #1E4A28", height: "100%",my:2 }}>
+      <Box sx={{ border: "2px solid #1E4A28", my: 2 }}>
+        
         <Box sx={{ bgcolor: "#1E4A28", p: 2, color: "white" }}>
           <Typography fontWeight={600}>
             Type of Support Provider
           </Typography>
         </Box>
 
-        <Box >
-          {/* 1 box */}
-          <Box sx={{padding:2}}>
+        <Box sx={{ p: 2 }}>
 
-            <Typography
-              sx={{
-                fontWeight: 600,
-                color: "#1E4A28",
-                mb: 1,
-                fontSize: "0.95rem",
-              }}
-            >
-              Infrastructure & Facilities
-            </Typography>
-            {
-              data.map(i => i.infrastructure.map((items, index) => (
-               <Box sx={{display:'flex'}}>
-                <Typography key={index}
-                  sx={{
-                    fontWeight: 600,
-
-                    mb: 1,
-                    fontSize: "0.95rem",
-                  }}
-                >
-                  {items}
-                </Typography>
-                </Box>
-
-              )))
-            }
-
-          </Box>
-
-          {/* 2 box */}
-          <Box sx={{padding:2}}>
-
-            <Typography
-              sx={{
-                fontWeight: 600,
-                color: "#1E4A28",
-                mb: 1,
-                fontSize: "0.95rem",
-              }}
-            >
-              Business & Startup Support
-            </Typography>
-            {
-              data.map(i => i.business_startup_support.map((items, index) => (
-
-                <Typography key={index}
-                  sx={{
-                    fontWeight: 600,
-
-                    mb: 1,
-                    fontSize: "0.95rem",
-                  }}
-                >
-                  {items}
-                </Typography>
-
-              )))
-            }
-
-          </Box>
-
-          {/* 3 box */}
-          <Box sx={{padding:2}}>
-
-            <Typography
-              sx={{
-                fontWeight: 600,
-                color: "#1E4A28",
-                mb: 1,
-                fontSize: "0.95rem",
-              }}
-            >
-              Funding & Financial Support
-            </Typography>
-            {
-              data.map(i => i.funding_financial_support.map((items, index) => (
-
-                <Typography key={index}
-                  sx={{
-                    fontWeight: 600,
-
-                    mb: 1,
-                    fontSize: "0.95rem",
-                  }}
-                >
-                  {items}
-                </Typography>
-
-              )))
-            }
-
-          </Box>
-
-        </Box>
-      </Box>
-
-
-
-       <Box sx={{ border: "2px solid #1E4A28", height: "100%" }}>
-        <Box sx={{ bgcolor: "#1E4A28", p: 2, color: "white" }}>
-          <Typography fontWeight={600}>
-            Specialized & Institutional Support
+          {/* Infrastructure */}
+          <Typography fontWeight={600} color="#1E4A28">
+            Infrastructure & Facilities
           </Typography>
-        </Box>
 
-        <Box >
-          {/* 1 box */}
-          <Box sx={{padding:2}}>
+          {data.infrastructure?.map((item, index) => (
+            <Typography key={index}>{item}</Typography>
+          ))}
 
-            <Typography
-              sx={{
-                fontWeight: 600,
-                color: "#1E4A28",
-                mb: 1,
-                fontSize: "0.95rem",
-              }}
-            >
-             Technology innovation
-            </Typography>
-            {
-              data.map(i => i.technology_innovation.map((items, index) => (
+          {/* Business Support */}
+          <Typography fontWeight={600} color="#1E4A28" mt={2}>
+            Business & Startup Support
+          </Typography>
 
-                <Typography key={index}
-                  sx={{
-                    fontWeight: 600,
+          {data.business_startup_support?.map((item, index) => (
+            <Typography key={index}>{item}</Typography>
+          ))}
 
-                    mb: 1,
-                    fontSize: "0.95rem",
-                  }}
-                >
-                  {items}
-                </Typography>
+          {/* Funding */}
+          <Typography fontWeight={600} color="#1E4A28" mt={2}>
+            Funding & Financial Support
+          </Typography>
 
-              )))
-            }
+          {data.funding_financial_support?.map((item, index) => (
+            <Typography key={index}>{item}</Typography>
+          ))}
 
-          </Box>
+          {/* Technology */}
+          <Typography fontWeight={600} color="#1E4A28" mt={2}>
+            Technology Innovation
+          </Typography>
 
-          {/* 2 box */}
-          <Box sx={{padding:2}}>
+          {data.technology_innovation?.map((item, index) => (
+            <Typography key={index}>{item}</Typography>
+          ))}
 
-            <Typography
-              sx={{
-                fontWeight: 600,
-                color: "#1E4A28",
-                mb: 1,
-                fontSize: "0.95rem",
-              }}
-            >
-              Legal compliance
-            </Typography>
-            {
-              data.map(i => i.legal_compliance.map((items, index) => (
+          {/* Legal */}
+          <Typography fontWeight={600} color="#1E4A28" mt={2}>
+            Legal Compliance
+          </Typography>
 
-                <Typography key={index}
-                  sx={{
-                    fontWeight: 600,
+          {data.legal_compliance?.map((item, index) => (
+            <Typography key={index}>{item}</Typography>
+          ))}
 
-                    mb: 1,
-                    fontSize: "0.95rem",
-                  }}
-                >
-                  {items}
-                </Typography>
+          {/* Government */}
+          <Typography fontWeight={600} color="#1E4A28" mt={2}>
+            Government Ecosystem
+          </Typography>
 
-              )))
-            }
-
-          </Box>
-
-          {/* 3 box */}
-          <Box sx={{padding:2}}>
-
-            <Typography
-              sx={{
-                fontWeight: 600,
-                color: "#1E4A28",
-                mb: 1,
-                fontSize: "0.95rem",
-              }}
-            >
-              Government Ecosystem
-            </Typography>
-            {
-              data.map(i => i.government_ecosystem.map((items, index) => (
-
-                <Typography key={index}
-                  sx={{
-                    fontWeight: 600,
-
-                    mb: 1,
-                    fontSize: "0.95rem",
-                  }}
-                >
-                  {items}
-                </Typography>
-
-              )))
-            }
-
-          </Box>
+          {data.government_ecosystem?.map((item, index) => (
+            <Typography key={index}>{item}</Typography>
+          ))}
 
         </Box>
       </Box>

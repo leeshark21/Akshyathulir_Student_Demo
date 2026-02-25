@@ -2,29 +2,19 @@ import { useEffect, useState } from "react";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-
 import Sector from "../components/Components/Sector";
 import SupportNeededStep from "../components/Components/SupportNeededStep";
 import FacilitiesAmenitiesStep from "../components/Components/FacilitiesAmenitiesStep";
 import Api from "./Api";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const PageBelow = () => {
 
-  const location = useLocation()
-
-  useEffect(()=>{
-    if(location.state){
-      setSupportNeeded(location.state)
-    }
-  },[])
-   
-
-
+  const location = useLocation();
+  const nevigate = useNavigate();
 
   const [supportNeeded, setSupportNeeded] = useState({
-    industry_sectors: [],   
-
+    industry_sectors: [],
     infrastructure: [],
     business_startup_support: [],
     funding_financial_support: [],
@@ -38,21 +28,41 @@ const PageBelow = () => {
   });
 
   
-  /* ---------- SUBMIT ---------- */
-  const nevigate = useNavigate()
-  const handleSubmit = async () => {
-    console.log("Sending to backend 👉", supportNeeded);
+  useEffect(() => {
+    const id = localStorage.getItem("supportId");
+    if (location.state) {
+      setSupportNeeded(location.state);
+    } else if (id) {
+      Api.get(`/support/${id}`)
+        .then(res => {
+          setSupportNeeded(res.data);
+        })
+        .catch(err => console.error(err));
+    }
 
+  }, [location.state]);
+
+
+
+  
+  const handleSubmit = async () => {
     try {
-      await Api.post('/submit', supportNeeded);
-      alert("✅ Successfully submitted");
-      nevigate("/reviewpage")
+      if (supportNeeded._id) {
+        await Api.patch(`/submit/${supportNeeded._id}`, supportNeeded);
+        localStorage.setItem("supportId", supportNeeded._id);
+        nevigate("/reviewpage");
+      } 
+      else {
+        const res = await Api.post("/submit", supportNeeded);
+        localStorage.setItem("supportId", res.data.id);
+        nevigate("/reviewpage");
+      }
 
     } catch (error) {
-      console.error("❌ Backend error:", error);
-      alert("Backend error");
+      console.error("Submit Error:", error);
     }
   };
+
 
   return (
     <Box>
@@ -62,7 +72,7 @@ const PageBelow = () => {
         </Typography>
       </Box>
 
-      <Box sx={{ my: 2,  }}>
+      <Box sx={{ my: 2 }}>
         <Sector
           supportData={supportNeeded}
           setSupportData={setSupportNeeded}
@@ -70,22 +80,17 @@ const PageBelow = () => {
       </Box>
 
       <Box sx={{ my: 2 }}>
-        {/* SUPPORT CHECKBOXES */}
         <SupportNeededStep
           supportData={supportNeeded}
           setSupportData={setSupportNeeded}
         />
 
-        {/* FACILITIES CHECKBOXES */}
         <FacilitiesAmenitiesStep
           supportData={supportNeeded}
           setSupportData={setSupportNeeded}
         />
 
         <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-          
-         
-
           <Button
             onClick={handleSubmit}
             sx={{
@@ -98,7 +103,7 @@ const PageBelow = () => {
               "&:hover": { bgcolor: "#0f7a2a" },
             }}
           >
-            Submit & review
+            Submit & Review
           </Button>
         </Box>
       </Box>

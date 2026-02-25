@@ -2,29 +2,38 @@ from database import support_collection
 from models.applicantModel import supportRequired
 from bson import ObjectId
 
-def post_support_controller(data:supportRequired):
-    result= support_collection.insert_one(data.model_dump())
+def post_support_controller(data: supportRequired):
+    result = support_collection.insert_one(data.model_dump())
     return {
-        "message":"successfully store data",
-        "id":str(result.inserted_id)
+        "message": "successfully store data",
+        "id": str(result.inserted_id)
     }
 
-def get_support_controller():
-    support = support_collection.find_one(sort=[("_id",-1)])
-    request =[]
-    if support:
-        support["_id"] =str(support["_id"])
-        request.append(support)
-    return request
+def get_support_controller(id: str):
+    try:
+        support = support_collection.find_one({"_id": ObjectId(id)})
+        if support:
+            support["_id"] = str(support["_id"])
+            return support
+        return {"error": "Not found"}
+    except Exception as e:
+        return {"error": str(e)}
+
+def patch_support_controller(id: str, support: dict):
+    try:
+        updatedata = {k: v for k, v in support.items() if k != "_id"}
+        result = support_collection.update_one(
+            {"_id": ObjectId(id)},
+            {"$set": updatedata}
+        )
+        if result.matched_count == 0:
+            return {"error": "Data not found"}
+        return {"message": "updated successfully"}
+    except Exception:
+        return {"error": "Invalid ID format"}
 
 
 
-def put_support_controller(support_id: str,data:supportRequired):
-    result = support_collection.update_one(
-        {"_id": ObjectId(support_id)},
-        {"$set":data.model_dump()}
-    )
-    if result.matched_count==0:
-        return {"message":"not foung"}
-    
-    return {"message" : "update successfully"}
+
+
+

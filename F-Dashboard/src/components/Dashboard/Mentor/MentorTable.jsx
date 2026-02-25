@@ -16,28 +16,13 @@ import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { MentorContext } from './context/mentorContext';
-
-
-
-
-// const createData = (name, expertise, startups, sessions, status, availability) => {
-//   return { name, expertise, startups, sessions, status, availability };
-// };
-
-
-
 const MentorTable = () => {
   const {mentor} = useContext(MentorContext)
-
   const [searchTerm, setSearchTerm] = useState('');
-
-
   const filteredRows = mentor.filter((row) =>
     row.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
     row.expertise.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
-
   const getStatusColor = (status) => {
     switch (status) {
       case 'High': 

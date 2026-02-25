@@ -1,47 +1,28 @@
 import axios from "axios";
 import { createContext, useEffect, useState } from "react";
-
 export const MentorContext = createContext(null);
-
 export const MentorProvider = ({ children }) => {
-
   const [expterisestats, SetExpterisestats] = useState([])
-
   const [mentor, setMentor] = useState([]);
-
   const [stats, SetStats] = useState();
-
   const [engagestats,SetEngagestats] = useState([])
-
   useEffect(() => {
     fetchMentor();
   }, []);
-
   const fetchMentor = async () => {
-
     try {
       const res = await axios.get("http://127.0.0.1:8000/mentor");
-
       const unqiueMentor = calDuplicate(res.data)
       setMentor(unqiueMentor);
       calculateMentor(unqiueMentor)
-
-
-
-
-
     } catch (error) {
       console.error("API error", error);
     }
   };
-
   const calDuplicate = (data) => {
-
     let result = []
-
     for (let i = 0; i < data.length; i++) {
       let exist = false
-
       for (let j = 0; j < result.length; j++) {
         if (data[i]._id === result[j]._id) {
           exist = true

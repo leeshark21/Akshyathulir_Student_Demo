@@ -20,28 +20,26 @@ function App() {
   return (
       <ThemeProvider theme={theme}>
       <CssBaseline />
-
       <Router>
         <Routes>
-
-          {/* Dashboard layout routes */}
           <Route element={<DashboardLayout />}>
             <Route path="/" element={<Overview />} />
             <Route path="/dashboard" element={<Overview />} />
             <Route path="/review" element={<PageBelow />} />
             <Route path="/reviewpage" element={<ReviewPage />} />
-
             <Route path="/mentors" element={<MentorNetwork />} />
             <Route path="/program" element={<ProgramEffectiveness />} />
             <Route path="/funding" element={<FundingTracker />} />
             <Route path="/success" element={<SuccessAnalytics />} />
             <Route path="/settings" element={<Settings />} />
           </Route>
-
-        </Routes>
+          </Routes>
       </Router>
     </ThemeProvider>
   );
 }
+
+
+
 
 export default App;

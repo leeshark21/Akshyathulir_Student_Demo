@@ -1,10 +1,13 @@
-import React from 'react';
-import { AppBar, Toolbar, Typography, IconButton, Box, Avatar, Badge } from '@mui/material';
+import AppBar from '@mui/material/AppBar';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import IconButton from '@mui/material/IconButton';
+import Box from '@mui/material/Box';
+import Avatar from '@mui/material/Avatar';
+import Badge from '@mui/material/Badge';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import SearchIcon from '@mui/icons-material/Search';
-
 const drawerWidth = 260;
-
 const Topbar = () => {
   return (
     <AppBar
@@ -44,5 +47,4 @@ const Topbar = () => {
     </AppBar>
   );
 };
-
 export default Topbar;

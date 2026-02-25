@@ -25,7 +25,7 @@ const ProgramEffectiveness = () => {
         Program Effectiveness & Outcomes
       </Typography>
 
-      {/* KPI Cards */}
+      
       <Grid container spacing={3} sx={{ mb: 4 }}>
         <Grid size={4} sm={6} md={3}>
           <StatCard
